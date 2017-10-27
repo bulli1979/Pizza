@@ -6,6 +6,7 @@ import java.util.Map;
 import application.Main;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import order.OrderData;
@@ -15,7 +16,6 @@ import scenes.PizzaScene;
 public class SceneManager {
 	private Map<String, PizzaScene> scenes;
 	private Stage primaryStage;
-	private BorderPane root;
 	private double width;
 	private double height;
 	private Main application;
@@ -27,7 +27,6 @@ public class SceneManager {
 		this.orderData = orderData;
 		this.primaryStage = primaryStage;
 		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-		root = new BorderPane();
 		scenes = new HashMap<String,PizzaScene>();
 		width = visualBounds.getWidth();
 		height = visualBounds.getHeight();
@@ -44,7 +43,7 @@ public class SceneManager {
 
 	private void initHomeScene()
 	{
-		HomeScene homeScene = new HomeScene.Builder().setRoot(root).withWidth(width).withHeight(height).data(orderData).application(application).build();
+		HomeScene homeScene = new HomeScene.Builder().withWidth(width).withHeight(height).data(orderData).application(application).build();
 		homeScene.initialize();
 		scenes.put("home",homeScene);
 	}
