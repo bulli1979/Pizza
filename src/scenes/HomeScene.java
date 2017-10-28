@@ -9,31 +9,28 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import order.OrderData;
+import scenemanagement.SceneManager;
+import scenes.HomeScene.Builder;
 
 public class HomeScene implements PizzaScene{
 	private Pane root;
-	private OrderData orderData;
-	private Main main;
+	private SceneManager sceneManager;
 	private Scene scene;
-	private ApplicationData appData;
 	public HomeScene(){}
 	private HomeScene(Builder builder){
-		this.appData = builder.appData;
-		this.orderData = builder.orderData;
-		this.main = builder.main;
+		this.sceneManager = builder.sceneManager;
 	}
 	
 	
 	public void initialize(){
 		
-		//TODO own Class
 		
-		HBox navigation = NavigationBuilder.buildNavigation("home",appData.getWidth());
+		HBox navigation = NavigationBuilder.buildNavigation("home",sceneManager);
 		
 		Text text = new Text("blablablub");
 		VBox content = new VBox(10,navigation,text);
 		root = content;
-		scene = new Scene(root,appData.getWidth(),appData.getHeight());
+		scene = new Scene(root,sceneManager.getAppData().getWidth(),sceneManager.getAppData().getHeight());
 		scene.getStylesheets().add("application/application.css");
 		
 		
@@ -45,24 +42,14 @@ public class HomeScene implements PizzaScene{
 	
 	
 	public static class Builder{
-		private ApplicationData appData;
-		private OrderData orderData;
-		private Main main;
+		private SceneManager sceneManager;
 		public Builder(){}
-		public Builder data(OrderData orderData) {
-			this.orderData = orderData;
+		public Builder giveSceneManager(SceneManager sceneManager) {
+			this.sceneManager = sceneManager;
 			return this;
 		}
 		public HomeScene build(){
 			return new HomeScene(this);
-		}
-		public Builder application(Main main) {
-			this.main = main;
-			return this;
-		}
-		public Builder withAppData(ApplicationData appData) {
-			this.appData = appData;
-			return this;
 		}
 		
 	}

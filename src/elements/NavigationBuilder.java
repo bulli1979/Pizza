@@ -1,34 +1,60 @@
 package elements;
-
 import application.ScreenNames;
 import application.Strings;
 import application.StyleClassNames;
+import events.LoginHandler;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import scenemanagement.SceneManager;
 
 public class NavigationBuilder {
 	
 
-	public static HBox buildNavigation(String screen,double applicationWidth){
+	public static HBox buildNavigation(String screen,SceneManager sceneManager){
 		HBox navigation = null;
 		
 		if(screen.equals(ScreenNames.HOME.getValue())){
-			navigation = getHomeNavigation(applicationWidth);
+			navigation = getHomeNavigation(sceneManager);
 		}
 		navigation.getStyleClass().add(StyleClassNames.NAVIGATION.getValue());
 		return navigation;
 	}
 	
-	private static HBox getHomeNavigation(double applicationWidth){
+	private static HBox getHomeNavigation(SceneManager sceneManager){
+		
 		Text headline = new Text(Strings.HEADLINE.getValue());
-		Text loginText = new Text(Strings.LOGIN.getValue());
-		loginText.getStyleClass().add(StyleClassNames.LOGINTEXT.getValue());
+		VBox userBox = getLoginBox(sceneManager);
+		
 		headline.getStyleClass().add(StyleClassNames.HEADLINE.getValue());
 		BorderPane pane = new BorderPane();
-		pane.setMinWidth(applicationWidth);
+		pane.setPrefWidth(sceneManager.getWidth()-20);
 		pane.setCenter(headline);
-		pane.setRight(loginText);
+		pane.setRight(userBox);
 		return new HBox(15,pane);
 	}
+	private static VBox getLoginBox(SceneManager sceneManager){
+		if(sceneManager.getAppData().isLoggedIn()){
+			Text loginText = new Text(Strings.LOGIN.getValue() + " " + sceneManager.getAppData().getUserName());
+			loginText.getStyleClass().add(StyleClassNames.LOGINTEXT.getValue());
+			return new VBox(10,loginText);
+		}else{
+			TextField userField = new TextField();
+			userField.setPromptText(Strings.USERNAME.getValue());
+			PasswordField passwordField = new PasswordField();
+			passwordField.setPromptText(Strings.PASSWORD.getValue());
+			Button loginButton = new Button();
+			LoginHandler loginHandler = new LoginHandler.Builder().setSceneManager(sceneManager).build();
+			loginButton.setOnAction(loginHandler);
+			loginButton.setText(Strings.LOGINBUTTONTEXT.getValue());
+			return new VBox(10,userField,passwordField,loginButton);
+		}
+		
+	}
+	
+	
 }

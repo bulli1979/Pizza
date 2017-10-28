@@ -32,24 +32,84 @@ public class SceneManager {
 		height = visualBounds.getHeight();
 		appData.setHeight(height);
 		appData.setWidth(width);
+		appData.setCurrentScene("home");
 		initScenes();
-		primaryStage.show();
-		primaryStage.setFullScreen(true);
 	}
 	
 	private void initScenes() {
 		initHomeScene();
 	}
 
-	private void initHomeScene()
-	{
-		HomeScene homeScene = new HomeScene.Builder().withAppData(appData).data(orderData).application(application).build();
+	private void initHomeScene(){
+		HomeScene homeScene = new HomeScene.Builder().giveSceneManager(this).build();
 		homeScene.initialize();
 		scenes.put("home",homeScene);
 	}
 	
 	public void setScene(String sceneName){
+		appData.setCurrentScene(sceneName);
 		primaryStage.setScene(scenes.get(sceneName).getScene());
+		primaryStage.setFullScreen(true);
+		primaryStage.show();
+
 	}
+
+	public Map<String, PizzaScene> getScenes() {
+		return scenes;
+	}
+
+	public void setScenes(Map<String, PizzaScene> scenes) {
+		this.scenes = scenes;
+	}
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public Main getApplication() {
+		return application;
+	}
+
+	public void setApplication(Main application) {
+		this.application = application;
+	}
+
+	public OrderData getOrderData() {
+		return orderData;
+	}
+
+	public void setOrderData(OrderData orderData) {
+		this.orderData = orderData;
+	}
+
+	public ApplicationData getAppData() {
+		return appData;
+	}
+
+	public void setAppData(ApplicationData appData) {
+		this.appData = appData;
+	}
+	
+	
 	
 }
