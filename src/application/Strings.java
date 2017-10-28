@@ -1,7 +1,8 @@
 package application;
 
 public enum Strings {
-	HEADLINE("Pizza Bestellservice Ruch Eberlein");
+	HEADLINE("Pizza Bestellservice Ruch Eberlein"), 
+	LOGIN("Eingeloggt als");
 	private final String value;
 	
 	private Strings(final String value){

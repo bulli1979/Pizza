@@ -9,4 +9,6 @@
 }
 .navigation{
 	-fx-padding:10pt;
+	-fx-border-color:#333333;
+	-fx-border-width:3pt;
 }
