@@ -1,5 +1,7 @@
 package events;
 
+import application.ScreenNames;
+import elements.NavigationBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import scenemanagement.SceneManager;
@@ -7,7 +9,6 @@ import scenemanagement.SceneManager;
 public class LoginHandler implements EventHandler<ActionEvent> {
 
 	private SceneManager sceneManager;
-	
 	private LoginHandler(Builder builder) {
 		this.sceneManager = builder.sceneManager;
 	}
@@ -16,6 +17,8 @@ public class LoginHandler implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent event) {
 		sceneManager.getAppData().setLoggedIn(true);
+		sceneManager.getAppData().setUserName("test");
+		sceneManager.getScenes().get(sceneManager.getAppData().getCurrentScene()).setNavigation(NavigationBuilder.buildNavigation(ScreenNames.HOME.getValue(), sceneManager));
 		sceneManager.setScene(sceneManager.getAppData().getCurrentScene());
 	}
 
@@ -27,7 +30,7 @@ public class LoginHandler implements EventHandler<ActionEvent> {
 		}
 		public Builder setSceneManager(SceneManager sceneManager) {
 			this.sceneManager = sceneManager;
-			return null;
+			return this;
 		}
 	}
 	

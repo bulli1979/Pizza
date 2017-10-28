@@ -17,7 +17,7 @@ public class NavigationBuilder {
 
 	public static HBox buildNavigation(String screen,SceneManager sceneManager){
 		HBox navigation = null;
-		
+		System.out.println("here" + sceneManager);
 		if(screen.equals(ScreenNames.HOME.getValue())){
 			navigation = getHomeNavigation(sceneManager);
 		}

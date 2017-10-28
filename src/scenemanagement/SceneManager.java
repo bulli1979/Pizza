@@ -20,8 +20,7 @@ public class SceneManager {
 	private Main application;
 	private OrderData orderData;
 	private ApplicationData appData;
-	public SceneManager(Main application, Stage primaryStage, OrderData orderData)
-	{
+	public SceneManager(Main application, Stage primaryStage, OrderData orderData){
 		this.application = application;
 		this.orderData = orderData;
 		this.primaryStage = primaryStage;
@@ -33,10 +32,9 @@ public class SceneManager {
 		appData.setHeight(height);
 		appData.setWidth(width);
 		appData.setCurrentScene("home");
-		initScenes();
 	}
 	
-	private void initScenes() {
+	public void initScenes() {
 		initHomeScene();
 	}
 
@@ -49,9 +47,8 @@ public class SceneManager {
 	public void setScene(String sceneName){
 		appData.setCurrentScene(sceneName);
 		primaryStage.setScene(scenes.get(sceneName).getScene());
-		primaryStage.setFullScreen(true);
+		System.out.println("here");
 		primaryStage.show();
-
 	}
 
 	public Map<String, PizzaScene> getScenes() {

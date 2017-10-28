@@ -1,21 +1,18 @@
 package scenes;
 
-import application.ApplicationData;
-import application.Main;
 import elements.NavigationBuilder;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import order.OrderData;
 import scenemanagement.SceneManager;
-import scenes.HomeScene.Builder;
 
 public class HomeScene implements PizzaScene{
 	private Pane root;
 	private SceneManager sceneManager;
 	private Scene scene;
+	private HBox navigation;
 	public HomeScene(){}
 	private HomeScene(Builder builder){
 		this.sceneManager = builder.sceneManager;
@@ -24,8 +21,9 @@ public class HomeScene implements PizzaScene{
 	
 	public void initialize(){
 		
+		System.out.println("here2" + sceneManager);
 		
-		HBox navigation = NavigationBuilder.buildNavigation("home",sceneManager);
+		navigation = NavigationBuilder.buildNavigation("home",sceneManager);
 		
 		Text text = new Text("blablablub");
 		VBox content = new VBox(10,navigation,text);
@@ -59,4 +57,15 @@ public class HomeScene implements PizzaScene{
 	public Scene getScene() {
 		return scene;
 	}
+	@Override
+	public HBox getNavigation() {
+		return navigation;
+	}
+	
+	@Override
+	public void setNavigation(HBox navigation) {		
+		this.navigation = navigation;
+	}
+	
+	
 }

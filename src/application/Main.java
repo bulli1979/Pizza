@@ -13,6 +13,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		this.sceneManager = new SceneManager(this, primaryStage, new OrderData());
+		sceneManager.initScenes();
 		try {
 			
 			sceneManager.setScene("home");
