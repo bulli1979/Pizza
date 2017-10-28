@@ -17,19 +17,18 @@ public class NavigationBuilder {
 
 	public static HBox buildNavigation(String screen,SceneManager sceneManager){
 		HBox navigation = null;
-		System.out.println("here" + sceneManager);
 		if(screen.equals(ScreenNames.HOME.getValue())){
 			navigation = getHomeNavigation(sceneManager);
+		}else if(screen.equals(ScreenNames.STEPPIZZA.getValue())){
+			navigation = getOrderPizzaNavigation(sceneManager);
 		}
 		navigation.getStyleClass().add(StyleClassNames.NAVIGATION.getValue());
 		return navigation;
 	}
 	
 	private static HBox getHomeNavigation(SceneManager sceneManager){
-		
 		Text headline = new Text(Strings.HEADLINE.getValue());
 		VBox userBox = getLoginBox(sceneManager);
-		
 		headline.getStyleClass().add(StyleClassNames.HEADLINE.getValue());
 		BorderPane pane = new BorderPane();
 		pane.setPrefWidth(sceneManager.getWidth()-20);
@@ -37,6 +36,18 @@ public class NavigationBuilder {
 		pane.setRight(userBox);
 		return new HBox(15,pane);
 	}
+	
+	private static HBox getOrderPizzaNavigation(SceneManager sceneManager){
+		Text headline = new Text(Strings.HEADLINE.getValue());
+		VBox userBox = getLoginBox(sceneManager);
+		headline.getStyleClass().add(StyleClassNames.HEADLINE.getValue());
+		BorderPane pane = new BorderPane();
+		pane.setPrefWidth(sceneManager.getWidth()-20);
+		pane.setCenter(headline);
+		pane.setRight(userBox);
+		return new HBox(15,pane);
+	}
+	
 	private static VBox getLoginBox(SceneManager sceneManager){
 		if(sceneManager.getAppData().isLoggedIn()){
 			Text loginText = new Text(Strings.LOGIN.getValue() + " " + sceneManager.getAppData().getUserName());

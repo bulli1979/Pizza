@@ -2,8 +2,7 @@ package application;
 
 public enum ScreenNames {
 	HOME("home"),
-	STEPONE("step1")
-	;
+	STEPPIZZA("stepPizza");
 	
 	private final String value;
 	private ScreenNames(final String value){

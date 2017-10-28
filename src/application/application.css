@@ -12,3 +12,16 @@
 	-fx-border-color:#333333;
 	-fx-border-width:3pt;
 }
+.cennterBox{
+	-fx-padding:20;
+}
+.centerText{
+	-fx-text-alignment:center;
+}
+.bestellbuttonCenter{
+	-fx-padding:10;	
+}
+.table{
+	
+	-fx-color:#ffffff;
+}

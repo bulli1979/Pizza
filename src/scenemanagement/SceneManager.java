@@ -5,11 +5,13 @@ import java.util.Map;
 
 import application.ApplicationData;
 import application.Main;
+import application.ScreenNames;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import order.OrderData;
 import scenes.HomeScene;
+import scenes.OrderStepPizzaScene;
 import scenes.PizzaScene;
 
 public class SceneManager {
@@ -36,12 +38,18 @@ public class SceneManager {
 	
 	public void initScenes() {
 		initHomeScene();
+		initOrderPizzaScene();
 	}
 
 	private void initHomeScene(){
-		HomeScene homeScene = new HomeScene.Builder().giveSceneManager(this).build();
-		homeScene.initialize();
-		scenes.put("home",homeScene);
+		HomeScene scene = new HomeScene.Builder().giveSceneManager(this).build();
+		scene.initialize();
+		scenes.put(ScreenNames.HOME.getValue(),scene);
+	}
+	private void initOrderPizzaScene(){
+		OrderStepPizzaScene scene = new OrderStepPizzaScene.Builder().giveSceneManager(this).build();
+		scene.initialize();
+		scenes.put(ScreenNames.STEPPIZZA.getValue(),scene);
 	}
 	
 	public void setScene(String sceneName){
