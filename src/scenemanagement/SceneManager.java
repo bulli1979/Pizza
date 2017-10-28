@@ -47,7 +47,6 @@ public class SceneManager {
 	public void setScene(String sceneName){
 		appData.setCurrentScene(sceneName);
 		primaryStage.setScene(scenes.get(sceneName).getScene());
-		System.out.println("here");
 		primaryStage.show();
 	}
 

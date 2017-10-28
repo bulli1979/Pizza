@@ -19,6 +19,7 @@ public class LoginHandler implements EventHandler<ActionEvent> {
 		sceneManager.getAppData().setLoggedIn(true);
 		sceneManager.getAppData().setUserName("test");
 		sceneManager.getScenes().get(sceneManager.getAppData().getCurrentScene()).setNavigation(NavigationBuilder.buildNavigation(ScreenNames.HOME.getValue(), sceneManager));
+		sceneManager.getScenes().get(sceneManager.getAppData().getCurrentScene()).update();
 		sceneManager.setScene(sceneManager.getAppData().getCurrentScene());
 	}
 
