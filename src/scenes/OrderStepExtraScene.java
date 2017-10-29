@@ -12,14 +12,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import scenemanagement.SceneManager;
 
-public class HomeScene implements PizzaScene{
+public class OrderStepExtraScene implements PizzaScene{
 	private Pane root;
 	private SceneManager sceneManager;
 	private Scene scene;
 	private Pane navigation;
 	private Pane center;
-	public HomeScene(){}
-	private HomeScene(Builder builder){
+	public OrderStepExtraScene(){}
+	private OrderStepExtraScene(Builder builder){
 		this.sceneManager = builder.sceneManager;
 	}
 	
@@ -63,8 +63,8 @@ public class HomeScene implements PizzaScene{
 			this.sceneManager = sceneManager;
 			return this;
 		}
-		public HomeScene build(){
-			return new HomeScene(this);
+		public OrderStepExtraScene build(){
+			return new OrderStepExtraScene(this);
 		}
 		
 	}

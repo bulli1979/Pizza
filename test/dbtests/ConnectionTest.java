@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 
 import data.DAOStaticData;
 import data.DBHelper;
-import order.Extra;
-import order.Pizza;
+import pojos.Extra;
+import pojos.Pizza;
 
 public class ConnectionTest {
 	@Test
