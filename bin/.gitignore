@@ -1,10 +1,11 @@
+/application/
 /data/
 /dbtests/
-/order/
-/application/
-/scenemanagement/
-/scenes/
 /elements/
 /events/
-/pizza.jpg
 /images/
+/order/
+/pizza.db
+/pizza.jpg
+/scenemanagement/
+/scenes/

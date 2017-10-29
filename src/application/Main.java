@@ -16,7 +16,7 @@ public class Main extends Application {
 		sceneManager.initScenes();
 		try {
 			
-			sceneManager.setScene(ScreenNames.HOME);
+			sceneManager.setScene(ScreenNames.STEPPERSONALDATA);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

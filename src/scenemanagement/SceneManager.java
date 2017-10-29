@@ -11,6 +11,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import order.OrderData;
 import scenes.HomeScene;
+import scenes.OrderStepPersonalData;
 import scenes.OrderStepPizzaScene;
 import scenes.PizzaScene;
 
@@ -39,6 +40,7 @@ public class SceneManager {
 	public void initScenes() {
 		initHomeScene();
 		initOrderPizzaScene();
+		initPersonalDataScene();
 	}
 
 	private void initHomeScene(){
@@ -50,6 +52,12 @@ public class SceneManager {
 		OrderStepPizzaScene scene = new OrderStepPizzaScene.Builder().giveSceneManager(this).build();
 		scene.initialize();
 		scenes.put(ScreenNames.STEPPIZZA,scene);
+	}
+	
+	private void initPersonalDataScene(){
+		OrderStepPersonalData scene = new OrderStepPersonalData.Builder().giveSceneManager(this).build();
+		scene.initialize();
+		scenes.put(ScreenNames.STEPPERSONALDATA,scene);
 	}
 	
 	public void setScene(ScreenNames screen){
