@@ -7,7 +7,10 @@ public enum Strings {
 	USERNAME("Benutzername"), 
 	PASSWORD("Passwort"),
 	LONG_HOME_TEXT("Willkommen bei unseren Pizza Service. Geniessen sie das Leben mit einer Pizza und guten Wein.\n Ab einem Bestellwert von CH30 bekommen sie eine Flasche feinsten Rotwein von uns geschenkt."), 
-	BESTELLEN("jetzt Bestellen");
+	BESTELLEN("jetzt Bestellen"), 
+	PIZZALABEL("Pizza"), 
+	DESCRIPTIONLABEL("Beschreibung"), 
+	ANZAHLLABEL("Anzahl");
 	private final String value;
 	
 	private Strings(final String value){

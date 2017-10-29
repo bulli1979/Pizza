@@ -14,7 +14,7 @@ public class BestellHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		sceneManager.setScene(ScreenNames.STEPPIZZA.getValue());
+		sceneManager.setScene(ScreenNames.STEPPIZZA);
 	}
 
 	public static class Builder{

@@ -16,7 +16,7 @@ public class Main extends Application {
 		sceneManager.initScenes();
 		try {
 			
-			sceneManager.setScene("home");
+			sceneManager.setScene(ScreenNames.HOME);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

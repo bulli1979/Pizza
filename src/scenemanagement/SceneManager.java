@@ -15,7 +15,7 @@ import scenes.OrderStepPizzaScene;
 import scenes.PizzaScene;
 
 public class SceneManager {
-	private Map<String, PizzaScene> scenes;
+	private Map<ScreenNames, PizzaScene> scenes;
 	private Stage primaryStage;
 	private double width;
 	private double height;
@@ -28,12 +28,12 @@ public class SceneManager {
 		this.primaryStage = primaryStage;
 		this.appData = new ApplicationData();
 		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-		scenes = new HashMap<String,PizzaScene>();
+		scenes = new HashMap<ScreenNames,PizzaScene>();
 		width = visualBounds.getWidth();
 		height = visualBounds.getHeight();
 		appData.setHeight(height);
 		appData.setWidth(width);
-		appData.setCurrentScene("home");
+		appData.setCurrentScene(ScreenNames.HOME);
 	}
 	
 	public void initScenes() {
@@ -44,26 +44,18 @@ public class SceneManager {
 	private void initHomeScene(){
 		HomeScene scene = new HomeScene.Builder().giveSceneManager(this).build();
 		scene.initialize();
-		scenes.put(ScreenNames.HOME.getValue(),scene);
+		scenes.put(ScreenNames.HOME,scene);
 	}
 	private void initOrderPizzaScene(){
 		OrderStepPizzaScene scene = new OrderStepPizzaScene.Builder().giveSceneManager(this).build();
 		scene.initialize();
-		scenes.put(ScreenNames.STEPPIZZA.getValue(),scene);
+		scenes.put(ScreenNames.STEPPIZZA,scene);
 	}
 	
-	public void setScene(String sceneName){
-		appData.setCurrentScene(sceneName);
-		primaryStage.setScene(scenes.get(sceneName).getScene());
+	public void setScene(ScreenNames screen){
+		appData.setCurrentScene(screen);
+		primaryStage.setScene(scenes.get(screen).getScene());
 		primaryStage.show();
-	}
-
-	public Map<String, PizzaScene> getScenes() {
-		return scenes;
-	}
-
-	public void setScenes(Map<String, PizzaScene> scenes) {
-		this.scenes = scenes;
 	}
 
 	public Stage getPrimaryStage() {
@@ -112,6 +104,10 @@ public class SceneManager {
 
 	public void setAppData(ApplicationData appData) {
 		this.appData = appData;
+	}
+
+	public Map<ScreenNames, PizzaScene> getScenes() {
+		return scenes;
 	}
 	
 	

@@ -15,12 +15,16 @@ import scenemanagement.SceneManager;
 public class NavigationBuilder {
 	
 
-	public static HBox buildNavigation(String screen,SceneManager sceneManager){
+	public static HBox buildNavigation(ScreenNames screen,SceneManager sceneManager){
 		HBox navigation = null;
-		if(screen.equals(ScreenNames.HOME.getValue())){
+		switch(screen){
+		case HOME :
 			navigation = getHomeNavigation(sceneManager);
-		}else if(screen.equals(ScreenNames.STEPPIZZA.getValue())){
+			break;
+		case STEPPIZZA : 
 			navigation = getOrderPizzaNavigation(sceneManager);
+			break;
+		default : System.out.println("mist");
 		}
 		navigation.getStyleClass().add(StyleClassNames.NAVIGATION.getValue());
 		return navigation;

@@ -7,14 +7,11 @@ import application.Strings;
 import application.StyleClassNames;
 import data.DAOStaticData;
 import elements.NavigationBuilder;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -35,7 +32,7 @@ public class OrderStepPizzaScene implements PizzaScene{
 	
 	public void initialize(){
 				
-		navigation = NavigationBuilder.buildNavigation(ScreenNames.STEPPIZZA.getValue(),sceneManager);
+		navigation = NavigationBuilder.buildNavigation(ScreenNames.STEPPIZZA,sceneManager);
 		center = createCenter();
 		root = new VBox(10,navigation,center);
 		scene = new Scene(root,sceneManager.getAppData().getWidth(),sceneManager.getAppData().getHeight());
@@ -53,9 +50,15 @@ public class OrderStepPizzaScene implements PizzaScene{
 		try{
 		List<Pizza> pizzaList = DAOStaticData.getAll();
 		VBox pizzaBox = new VBox(5);
-		
-		
-		
+		Image image = new Image("images/pizza.png");
+		ImageView iv1 = new ImageView();
+        iv1.setImage(image);
+
+		Text pizzaLabel = new Text(Strings.PIZZALABEL.getValue());
+		Text descriptionLabel = new Text(Strings.DESCRIPTIONLABEL.getValue());
+		Text anzahlLabel = new Text(Strings.ANZAHLLABEL.getValue());
+		HBox headRow = new HBox(20,iv1,pizzaLabel,descriptionLabel,anzahlLabel);
+		pizzaBox.getChildren().add(headRow);
 		Button bestellButtonCenter = new Button(Strings.BESTELLEN.getValue());
 		BestellHandler bestellHandler = new BestellHandler.Builder().setSceneManager(sceneManager).build();
 		bestellButtonCenter.setOnAction(bestellHandler);

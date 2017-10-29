@@ -26,7 +26,7 @@ public class HomeScene implements PizzaScene{
 	
 	public void initialize(){
 				
-		navigation = NavigationBuilder.buildNavigation(ScreenNames.HOME.getValue(),sceneManager);
+		navigation = NavigationBuilder.buildNavigation(ScreenNames.HOME,sceneManager);
 		center = createCenter();
 		root = new VBox(10,navigation,center);
 		scene = new Scene(root,sceneManager.getAppData().getWidth(),sceneManager.getAppData().getHeight());

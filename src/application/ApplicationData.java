@@ -5,7 +5,7 @@ public class ApplicationData {
 	private double height;
 	private String userName;
 	private boolean loggedIn = false;
-	private String currentScene;
+	private ScreenNames currentScene;
 	public double getWidth() {
 		return width;
 	}
@@ -30,10 +30,10 @@ public class ApplicationData {
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
 	}
-	public String getCurrentScene() {
+	public ScreenNames getCurrentScene() {
 		return currentScene;
 	}
-	public void setCurrentScene(String currentScene) {
+	public void setCurrentScene(ScreenNames currentScene) {
 		this.currentScene = currentScene;
 	}
 	
