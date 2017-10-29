@@ -1,13 +1,19 @@
-package order;
+package pojos;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Pizza {
+public class Pizza implements Cloneable{
 	private double price;
 	private String name;
 	private String description;
 	private List<Extra> extras;
 	private int id;
+	
+	public Pizza(){
+		extras = new ArrayList<Extra>();
+	}
+	
 	public double getPrice() {
 		return price;
 	}
@@ -38,6 +44,8 @@ public class Pizza {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	public Pizza clone() throws CloneNotSupportedException {
+        return (Pizza)super.clone();
+    }
 	
 }

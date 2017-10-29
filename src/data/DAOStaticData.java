@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import order.Extra;
-import order.Pizza;
+import pojos.Extra;
+import pojos.Pizza;
 
 public class DAOStaticData {
 	public DAOStaticData(){

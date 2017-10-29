@@ -10,7 +10,14 @@ public enum Strings {
 	BESTELLEN("jetzt Bestellen"), 
 	PIZZALABEL("Pizza"), 
 	DESCRIPTIONLABEL("Beschreibung"), 
-	ANZAHLLABEL("Anzahl");
+	ANZAHLLABEL("Anzahl"), 
+	PRICELABEL("Preis"), 
+	FORWARD("Weiter"), 
+	HOME("HOME"), 
+	PIZZASELECT("Pizzas wählen"), 
+	EXTRASELECT("Extras hinzufügen"), 
+	PERSONALDATA("Bestellangaben"), 
+	OVERVIEW("Abschluss"), NOEXTRAS("ohne Extras weiter");
 	private final String value;
 	
 	private Strings(final String value){

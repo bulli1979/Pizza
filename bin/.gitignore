@@ -4,8 +4,12 @@
 /elements/
 /events/
 /images/
+<<<<<<< HEAD
+/pojos/
+=======
 /order/
 /pizza.db
 /pizza.jpg
 /scenemanagement/
 /scenes/
+>>>>>>> 303dcbb47f389be404f24f3c92a23773342e1a8e

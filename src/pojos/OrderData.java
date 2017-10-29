@@ -1,4 +1,4 @@
-package order;
+package pojos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +71,4 @@ public class OrderData {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	
-	
-	
 }

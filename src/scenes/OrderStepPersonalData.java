@@ -1,6 +1,6 @@
 package scenes;
 
-import application.ScreenNames;
+import application.SceneHolder;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
 import javafx.geometry.Insets;
@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import scenemanagement.SceneManager;
@@ -22,7 +21,7 @@ public class OrderStepPersonalData implements PizzaScene {
 	private Pane root;
 	private SceneManager sceneManager;
 	private Scene scene;
-	private HBox navigation;
+	private Pane navigation;
 	private Pane center;
 
 	public OrderStepPersonalData() {
@@ -32,10 +31,11 @@ public class OrderStepPersonalData implements PizzaScene {
 		this.sceneManager = builder.sceneManager;
 	}
 
+
 	@Override
 	public void initialize() {
 
-		navigation = NavigationBuilder.buildNavigation(ScreenNames.HOME, sceneManager);
+		navigation = NavigationBuilder.buildNavigation(SceneHolder.STEPPERSONALDATA, sceneManager);
 		center = createCenter();
 		root = new VBox(10, navigation, center);
 		scene = new Scene(root, sceneManager.getAppData().getWidth(), sceneManager.getAppData().getHeight());
@@ -197,12 +197,12 @@ public class OrderStepPersonalData implements PizzaScene {
 	}
 
 	@Override
-	public HBox getNavigation() {
+	public Pane getNavigation() {
 		return navigation;
 	}
 
 	@Override
-	public void setNavigation(HBox navigation) {
+	public void setNavigation(Pane navigation) {		
 		this.navigation = navigation;
 	}
 
