@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import pojos.OrderData;
 import pojos.ListSize;
 import scenes.HomeScene;
+import scenes.OrderStepPersonalData;
 import scenes.OrderStepPizzaScene;
 import scenes.PizzaScene;
 
@@ -42,6 +43,7 @@ public class SceneManager {
 	public void initScenes() {
 		initHomeScene();
 		initOrderPizzaScene();
+		initPersonalDataScene();
 	}
 
 	private void initHomeScene(){
@@ -55,7 +57,17 @@ public class SceneManager {
 		scenes.put(SceneHolder.STEPPIZZA,scene);
 	}
 	
+<<<<<<< HEAD
 	public void setScene(SceneHolder screen){
+=======
+	private void initPersonalDataScene(){
+		OrderStepPersonalData scene = new OrderStepPersonalData.Builder().giveSceneManager(this).build();
+		scene.initialize();
+		scenes.put(ScreenNames.STEPPERSONALDATA,scene);
+	}
+	
+	public void setScene(ScreenNames screen){
+>>>>>>> 303dcbb47f389be404f24f3c92a23773342e1a8e
 		appData.setCurrentScene(screen);
 		primaryStage.setScene(scenes.get(screen).getScene());
 		primaryStage.show();
