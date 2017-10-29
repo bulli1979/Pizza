@@ -1,6 +1,6 @@
 package events;
 
-import application.ScreenNames;
+import application.SceneHolder;
 import elements.NavigationBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,7 +20,7 @@ public class LoginHandler implements EventHandler<ActionEvent> {
 		//TODO login abfrage durchführen
 		
 		sceneManager.getAppData().setUserName("Mirko");
-		sceneManager.getScenes().get(sceneManager.getAppData().getCurrentScene()).setNavigation(NavigationBuilder.buildNavigation(ScreenNames.HOME, sceneManager));
+		sceneManager.getScenes().get(sceneManager.getAppData().getCurrentScene()).setNavigation(NavigationBuilder.buildNavigation(SceneHolder.HOME, sceneManager));
 		sceneManager.getScenes().get(sceneManager.getAppData().getCurrentScene()).update();
 		sceneManager.setScene(sceneManager.getAppData().getCurrentScene());
 	}

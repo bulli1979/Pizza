@@ -7,7 +7,12 @@ public enum StyleClassNames {
 	BESTELLBUTTON_CENTER("bestellbuttonCenter"), 
 	CENTERBOX("cennterBox"),
 	CENTERTEXT("centerText"), 
-	TABLE("table");
+	TABLE("table"), 
+	LISTHEADSTYLE("listHeadStyle"), 
+	LISTCOLSTYLE("listColStyle"), 
+	LISTEVEN("even"), 
+	ACTIVE("activeButton"),
+	INACTIVE("inactiveButton");
 	private final String value;
 	
 	private StyleClassNames(final String value){

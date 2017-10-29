@@ -2,7 +2,7 @@ package application;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import order.OrderData;
+import pojos.OrderData;
 import scenemanagement.SceneManager;
 
 public class Main extends Application {
@@ -16,7 +16,7 @@ public class Main extends Application {
 		sceneManager.initScenes();
 		try {
 			
-			sceneManager.setScene(ScreenNames.HOME);
+			sceneManager.setScene(SceneHolder.HOME);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

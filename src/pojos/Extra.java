@@ -1,4 +1,4 @@
-package order;
+package pojos;
 
 public class Extra {
 	private int id;

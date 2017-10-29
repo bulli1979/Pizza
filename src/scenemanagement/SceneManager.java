@@ -5,35 +5,38 @@ import java.util.Map;
 
 import application.ApplicationData;
 import application.Main;
-import application.ScreenNames;
+import application.SceneHolder;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import order.OrderData;
+import pojos.OrderData;
+import pojos.ListSize;
 import scenes.HomeScene;
 import scenes.OrderStepPizzaScene;
 import scenes.PizzaScene;
 
 public class SceneManager {
-	private Map<ScreenNames, PizzaScene> scenes;
+	private Map<SceneHolder, PizzaScene> scenes;
 	private Stage primaryStage;
 	private double width;
 	private double height;
 	private Main application;
 	private OrderData orderData;
 	private ApplicationData appData;
+	private ListSize listSize;
 	public SceneManager(Main application, Stage primaryStage, OrderData orderData){
 		this.application = application;
 		this.orderData = orderData;
 		this.primaryStage = primaryStage;
 		this.appData = new ApplicationData();
 		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-		scenes = new HashMap<ScreenNames,PizzaScene>();
+		scenes = new HashMap<SceneHolder,PizzaScene>();
 		width = visualBounds.getWidth();
+		listSize = ScreenSizeCalculator.getScreenSizeForList(width);
 		height = visualBounds.getHeight();
 		appData.setHeight(height);
 		appData.setWidth(width);
-		appData.setCurrentScene(ScreenNames.HOME);
+		appData.setCurrentScene(SceneHolder.HOME);
 	}
 	
 	public void initScenes() {
@@ -44,15 +47,15 @@ public class SceneManager {
 	private void initHomeScene(){
 		HomeScene scene = new HomeScene.Builder().giveSceneManager(this).build();
 		scene.initialize();
-		scenes.put(ScreenNames.HOME,scene);
+		scenes.put(SceneHolder.HOME,scene);
 	}
 	private void initOrderPizzaScene(){
 		OrderStepPizzaScene scene = new OrderStepPizzaScene.Builder().giveSceneManager(this).build();
 		scene.initialize();
-		scenes.put(ScreenNames.STEPPIZZA,scene);
+		scenes.put(SceneHolder.STEPPIZZA,scene);
 	}
 	
-	public void setScene(ScreenNames screen){
+	public void setScene(SceneHolder screen){
 		appData.setCurrentScene(screen);
 		primaryStage.setScene(scenes.get(screen).getScene());
 		primaryStage.show();
@@ -106,10 +109,11 @@ public class SceneManager {
 		this.appData = appData;
 	}
 
-	public Map<ScreenNames, PizzaScene> getScenes() {
+	public Map<SceneHolder, PizzaScene> getScenes() {
 		return scenes;
 	}
-	
-	
-	
+
+	public ListSize getListSize() {
+		return listSize;
+	}
 }

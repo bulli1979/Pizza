@@ -2,8 +2,8 @@
 .root {
   -fx-font-size: 15pt ;
   -fx-padding:10 10 10 10;
-  -fx-color:#333333;
-}
+  -fx-color: #333333;
+  -fx-background-color: #ffffff;}
 .headline{
 	-fx-font-size: 25pt ;
 }
@@ -23,5 +23,18 @@
 }
 .table{
 	
-	-fx-color:#ffffff;
+	-fx-color: #ffffff;
+}
+.listHeadStyle{
+	-fx-font-weight:bold;
+	-fx-font-size: 18pt;
+}
+.even{
+	-fx-background-color: #DDDDDD;
+}
+.activeButton{
+	
+}
+.inactiveButton{
+	
 }

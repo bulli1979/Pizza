@@ -1,11 +1,11 @@
 package application;
 
-public enum ScreenNames {
+public enum SceneHolder {
 	HOME,
 	STEPPIZZA,
 	STEPEXTRAS,
 	STEPEXTRACHANGE,
 	STEPPERSONALDATA,
-	STEPOVERVOEW,
+	STEPOVERVIEW,
 	STEPTHANKYOU;
 }

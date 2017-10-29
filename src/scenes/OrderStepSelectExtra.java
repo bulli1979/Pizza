@@ -1,13 +1,12 @@
 package scenes;
 
-import application.ScreenNames;
+import application.SceneHolder;
 import application.Strings;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -17,7 +16,7 @@ public class OrderStepSelectExtra implements PizzaScene{
 	private Pane root;
 	private SceneManager sceneManager;
 	private Scene scene;
-	private HBox navigation;
+	private Pane navigation;
 	private Pane center;
 	public OrderStepSelectExtra(){}
 	private OrderStepSelectExtra(Builder builder){
@@ -26,7 +25,7 @@ public class OrderStepSelectExtra implements PizzaScene{
 	
 	public void initialize(){
 				
-		navigation = NavigationBuilder.buildNavigation(ScreenNames.HOME,sceneManager);
+		navigation = NavigationBuilder.buildNavigation(SceneHolder.HOME,sceneManager);
 		center = createCenter();
 		root = new VBox(10,navigation,center);
 		scene = new Scene(root,sceneManager.getAppData().getWidth(),sceneManager.getAppData().getHeight());
@@ -75,12 +74,12 @@ public class OrderStepSelectExtra implements PizzaScene{
 		return scene;
 	}
 	@Override
-	public HBox getNavigation() {
+	public Pane getNavigation() {
 		return navigation;
 	}
 	
 	@Override
-	public void setNavigation(HBox navigation) {		
+	public void setNavigation(Pane navigation) {		
 		this.navigation = navigation;
 	}
 	
