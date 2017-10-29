@@ -94,13 +94,13 @@ public class OrderStepPizzaScene implements PizzaScene {
 			pizzaBox.getChildren().add(sp);
 
 			Button personalDataButton = new Button(Strings.NOEXTRAS.getValue());
-			personalDataButton.onMouseClickedProperty().addListener((e)-> {
+			personalDataButton.setOnAction((e)-> {
 				sceneManager.setScene(SceneHolder.STEPPERSONALDATA);
 			});
 			personalDataButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 			
 			Button forwardButton = new Button(Strings.FORWARD.getValue());
-			forwardButton.onMouseClickedProperty().addListener((e)-> {
+			forwardButton.setOnAction((e)-> {
 				sceneManager.setScene(SceneHolder.STEPEXTRAS);
 			});
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());

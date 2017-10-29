@@ -1,7 +1,6 @@
 package scenes;
 
 import application.SceneHolder;
-import application.Strings;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
 import javafx.geometry.Insets;
@@ -10,19 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.BorderPane;
-<<<<<<< HEAD
-=======
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
->>>>>>> 303dcbb47f389be404f24f3c92a23773342e1a8e
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import scenemanagement.SceneManager;
 
 public class OrderStepPersonalData implements PizzaScene {
@@ -38,18 +30,12 @@ public class OrderStepPersonalData implements PizzaScene {
 	private OrderStepPersonalData(Builder builder) {
 		this.sceneManager = builder.sceneManager;
 	}
-<<<<<<< HEAD
-	
-	public void initialize(){
-				
-		navigation = NavigationBuilder.buildNavigation(SceneHolder.HOME,sceneManager);
-=======
+
 
 	@Override
 	public void initialize() {
 
-		navigation = NavigationBuilder.buildNavigation(ScreenNames.HOME, sceneManager);
->>>>>>> 303dcbb47f389be404f24f3c92a23773342e1a8e
+		navigation = NavigationBuilder.buildNavigation(SceneHolder.STEPPERSONALDATA, sceneManager);
 		center = createCenter();
 		root = new VBox(10, navigation, center);
 		scene = new Scene(root, sceneManager.getAppData().getWidth(), sceneManager.getAppData().getHeight());
@@ -216,11 +202,7 @@ public class OrderStepPersonalData implements PizzaScene {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void setNavigation(Pane navigation) {		
-=======
-	public void setNavigation(HBox navigation) {
->>>>>>> 303dcbb47f389be404f24f3c92a23773342e1a8e
 		this.navigation = navigation;
 	}
 

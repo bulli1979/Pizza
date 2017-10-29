@@ -57,17 +57,14 @@ public class SceneManager {
 		scenes.put(SceneHolder.STEPPIZZA,scene);
 	}
 	
-<<<<<<< HEAD
-	public void setScene(SceneHolder screen){
-=======
+
 	private void initPersonalDataScene(){
 		OrderStepPersonalData scene = new OrderStepPersonalData.Builder().giveSceneManager(this).build();
 		scene.initialize();
-		scenes.put(ScreenNames.STEPPERSONALDATA,scene);
+		scenes.put(SceneHolder.STEPPERSONALDATA,scene);
 	}
 	
-	public void setScene(ScreenNames screen){
->>>>>>> 303dcbb47f389be404f24f3c92a23773342e1a8e
+	public void setScene(SceneHolder screen){
 		appData.setCurrentScene(screen);
 		primaryStage.setScene(scenes.get(screen).getScene());
 		primaryStage.show();

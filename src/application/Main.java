@@ -15,12 +15,7 @@ public class Main extends Application {
 		this.sceneManager = new SceneManager(this, primaryStage, new OrderData());
 		sceneManager.initScenes();
 		try {
-			
-<<<<<<< HEAD
 			sceneManager.setScene(SceneHolder.HOME);
-=======
-			sceneManager.setScene(ScreenNames.STEPPERSONALDATA);
->>>>>>> 303dcbb47f389be404f24f3c92a23773342e1a8e
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
