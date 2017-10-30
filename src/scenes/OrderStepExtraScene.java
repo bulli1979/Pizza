@@ -35,14 +35,16 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 
 	public void update() {
 		root = new VBox(10, navigation, center);
+		center = createCenter();
+		navigation = NavigationBuilder.buildNavigation(SceneHolder.STEPEXTRAS, sceneManager);
 		scene = new Scene(root, sceneManager.getAppData().getWidth(), sceneManager.getAppData().getHeight());
 		scene.getStylesheets().add("application/application.css");
+		
 	}
 
 	private Pane createCenter() {
 		try {
 			List<Pizza> pizzaList = sceneManager.getOrderData().getPizzas();
-
 			VBox pizzaBox = new VBox(5);
 			Image image = new Image("images/pizza.png");
 			ImageView imageView = new ImageView();
@@ -69,6 +71,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			int index = 1;
 			for (Pizza pizza : pizzaList) {
 				databox.getChildren().add(buildRow(image, pizza, index));
+				System.out.println("add");
 				index++;
 			}
 			ScrollPane sp = new ScrollPane(databox);
@@ -94,6 +97,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
 			return centerBox;
 		} catch (Exception e) {
+			System.out.println("mist");
 			return new HBox(0, new Text(Strings.ERROR.getValue()));
 		}
 	}
@@ -108,7 +112,6 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 
 		Label descriptionLabel = new Label(pizza.getDescription());
 		setColLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
-		String extras = "";
 		VBox extraBox = new VBox(2);
 		
 		double price = pizza.getPrice();
@@ -126,12 +129,9 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			extraIndex++;
 		}
 		Label priceLabel = new Label(decimalFormat.format(price));
-		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);
-
-		Text extraText = new Text(extras);
+		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);		
 		
-		
-		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, extraText);
+		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, extraBox);
 		row.setAlignment(Pos.CENTER_LEFT);
 		if (index % 2 == 0) {
 			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());

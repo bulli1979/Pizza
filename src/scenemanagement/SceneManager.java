@@ -43,6 +43,7 @@ public class SceneManager {
 	
 	
 	public void setScene(SceneHolder screen){
+		screen.getPizzaScene().update();
 		appData.setCurrentScene(screen);
 		primaryStage.setScene(screen.getPizzaScene().getScene());
 		primaryStage.show();

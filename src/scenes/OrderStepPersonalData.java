@@ -30,6 +30,7 @@ public class OrderStepPersonalData extends OrderStepScene implements PizzaScene 
 
 	@Override
 	public void update() {
+		navigation = NavigationBuilder.buildNavigation(SceneHolder.STEPPERSONALDATA, sceneManager);
 		root = new VBox(10, navigation, center);
 		scene = new Scene(root, sceneManager.getAppData().getWidth(), sceneManager.getAppData().getHeight());
 		scene.getStylesheets().add("application/application.css");

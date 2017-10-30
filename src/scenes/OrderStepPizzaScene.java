@@ -35,6 +35,7 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 	}
 
 	public void update() {
+		navigation = NavigationBuilder.buildNavigation(SceneHolder.STEPPIZZA, sceneManager);
 		root = new VBox(10, navigation, center);
 		scene = new Scene(root, sceneManager.getAppData().getWidth(), sceneManager.getAppData().getHeight());
 		scene.getStylesheets().add("application/application.css");
