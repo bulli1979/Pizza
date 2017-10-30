@@ -1,27 +1,16 @@
 package scenes;
 
-import application.SceneHolder;
 import application.Strings;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import scenemanagement.SceneManager;
+import scenemanagement.SceneHolder;
 
-public class OrderStepThankYou implements PizzaScene{
-	private Pane root;
-	private SceneManager sceneManager;
-	private Scene scene;
-	private Pane navigation;
-	private Pane center;
-	public OrderStepThankYou(){}
-	private OrderStepThankYou(Builder builder){
-		this.sceneManager = builder.sceneManager;
-	}
+public class OrderStepThankYou extends OrderStepScene implements PizzaScene{
 	
 	public void initialize(){
 				
@@ -55,33 +44,4 @@ public class OrderStepThankYou implements PizzaScene{
 		centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
 		return centerBox;
 	}
-	
-	public static class Builder{
-		private SceneManager sceneManager;
-		public Builder(){}
-		public Builder giveSceneManager(SceneManager sceneManager) {
-			this.sceneManager = sceneManager;
-			return this;
-		}
-		public OrderStepThankYou build(){
-			return new OrderStepThankYou(this);
-		}
-		
-	}
-
-	@Override
-	public Scene getScene() {
-		return scene;
-	}
-	@Override
-	public Pane getNavigation() {
-		return navigation;
-	}
-	
-	@Override
-	public void setNavigation(Pane navigation) {		
-		this.navigation = navigation;
-	}
-	
-	
 }

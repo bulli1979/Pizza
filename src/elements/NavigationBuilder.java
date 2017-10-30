@@ -1,6 +1,4 @@
 package elements;
-
-import application.SceneHolder;
 import application.Strings;
 import application.StyleClassNames;
 import events.LoginHandler;
@@ -12,10 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import scenemanagement.SceneHolder;
 import scenemanagement.SceneManager;
 
 public class NavigationBuilder {
-
+	private NavigationBuilder(){}
 	public static Pane buildNavigation(SceneHolder screen, SceneManager sceneManager) {
 		Pane navigation = null;
 		switch (screen) {

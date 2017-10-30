@@ -1,6 +1,5 @@
 package scenes;
 
-import application.SceneHolder;
 import application.Strings;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
@@ -10,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import scenemanagement.SceneHolder;
 import scenemanagement.SceneManager;
 
 public class HomeScene implements PizzaScene{
@@ -17,14 +17,8 @@ public class HomeScene implements PizzaScene{
 	private SceneManager sceneManager;
 	private Scene scene;
 	private Pane navigation;
-	private Pane center;
-	public HomeScene(){}
-	private HomeScene(Builder builder){
-		this.sceneManager = builder.sceneManager;
-	}
-	
+	private Pane center;	
 	public void initialize(){
-				
 		navigation = NavigationBuilder.buildNavigation(SceneHolder.HOME,sceneManager);
 		center = createCenter();
 		root = new VBox(10,navigation,center);
@@ -56,19 +50,6 @@ public class HomeScene implements PizzaScene{
 		return centerBox;
 	}
 	
-	public static class Builder{
-		private SceneManager sceneManager;
-		public Builder(){}
-		public Builder giveSceneManager(SceneManager sceneManager) {
-			this.sceneManager = sceneManager;
-			return this;
-		}
-		public HomeScene build(){
-			return new HomeScene(this);
-		}
-		
-	}
-
 	@Override
 	public Scene getScene() {
 		return scene;
@@ -81,6 +62,11 @@ public class HomeScene implements PizzaScene{
 	@Override
 	public void setNavigation(Pane navigation) {		
 		this.navigation = navigation;
+	}
+	@Override
+	public void setSceneManager(SceneManager sceneManager) {
+		this.sceneManager = sceneManager;
+		
 	}
 	
 	

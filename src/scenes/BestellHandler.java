@@ -1,8 +1,8 @@
 package scenes;
 
-import application.SceneHolder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import scenemanagement.SceneHolder;
 import scenemanagement.SceneManager;
 
 public class BestellHandler implements EventHandler<ActionEvent> {
@@ -38,10 +38,6 @@ public class BestellHandler implements EventHandler<ActionEvent> {
 
 	public static class Builder {
 		SceneManager sceneManager;
-
-		public Builder() {
-		}
-
 		public BestellHandler build() {
 			return new BestellHandler(this);
 		}

@@ -1,6 +1,5 @@
 package scenes;
 
-import application.SceneHolder;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
 import javafx.geometry.Insets;
@@ -13,24 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import scenemanagement.SceneManager;
+import scenemanagement.SceneHolder;
 
-public class OrderStepPersonalData implements PizzaScene {
-	private Pane root;
-	private SceneManager sceneManager;
-	private Scene scene;
-	private Pane navigation;
-	private Pane center;
-
-	public OrderStepPersonalData() {
-	}
-
-	private OrderStepPersonalData(Builder builder) {
-		this.sceneManager = builder.sceneManager;
-	}
-
+public class OrderStepPersonalData extends OrderStepScene implements PizzaScene {
 
 	@Override
 	public void initialize() {
@@ -173,37 +158,4 @@ public class OrderStepPersonalData implements PizzaScene {
 		GridPane.setConstraints(radioButton, 2, row);
 		grid.getChildren().addAll(label, radioButton);
 	}
-
-	public static class Builder {
-		private SceneManager sceneManager;
-
-		public Builder() {
-		}
-
-		public Builder giveSceneManager(SceneManager sceneManager) {
-			this.sceneManager = sceneManager;
-			return this;
-		}
-
-		public OrderStepPersonalData build() {
-			return new OrderStepPersonalData(this);
-		}
-
-	}
-
-	@Override
-	public Scene getScene() {
-		return scene;
-	}
-
-	@Override
-	public Pane getNavigation() {
-		return navigation;
-	}
-
-	@Override
-	public void setNavigation(Pane navigation) {		
-		this.navigation = navigation;
-	}
-
 }

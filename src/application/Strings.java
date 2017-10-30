@@ -17,7 +17,9 @@ public enum Strings {
 	PIZZASELECT("Pizzas wählen"), 
 	EXTRASELECT("Extras hinzufügen"), 
 	PERSONALDATA("Bestellangaben"), 
-	OVERVIEW("Abschluss"), NOEXTRAS("ohne Extras weiter");
+	OVERVIEW("Abschluss"), 
+	NOEXTRAS("ohne Extras weiter"), 
+	ERROR("Es ist ein Fehler aufgetreten. Bitte kontaktieren sie den Administrator."), DELETE("löschen");
 	private final String value;
 	
 	private Strings(final String value){

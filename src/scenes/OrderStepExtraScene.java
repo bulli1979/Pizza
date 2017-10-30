@@ -1,87 +1,146 @@
 package scenes;
 
-import application.SceneHolder;
+import java.util.List;
 import application.Strings;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import scenemanagement.SceneManager;
+import pojos.Extra;
+import pojos.Pizza;
+import scenemanagement.SceneHolder;
 
-public class OrderStepExtraScene implements PizzaScene{
-	private Pane root;
-	private SceneManager sceneManager;
-	private Scene scene;
-	private Pane navigation;
-	private Pane center;
-	public OrderStepExtraScene(){}
-	private OrderStepExtraScene(Builder builder){
-		this.sceneManager = builder.sceneManager;
-	}
+public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 	
-	public void initialize(){
-				
-		navigation = NavigationBuilder.buildNavigation(SceneHolder.HOME,sceneManager);
+	public void initialize() {
+
+		navigation = NavigationBuilder.buildNavigation(SceneHolder.STEPEXTRAS, sceneManager);
 		center = createCenter();
-		root = new VBox(10,navigation,center);
-		scene = new Scene(root,sceneManager.getAppData().getWidth(),sceneManager.getAppData().getHeight());
+		root = new VBox(10, navigation, center);
+		scene = new Scene(root, sceneManager.getAppData().getWidth(), sceneManager.getAppData().getHeight());
 		scene.getStylesheets().add("application/application.css");
-		
-	}
-	
-	public void update(){	
-		root = new VBox(10,navigation,center);
-		scene = new Scene(root,sceneManager.getAppData().getWidth(),sceneManager.getAppData().getHeight());
-		scene.getStylesheets().add("application/application.css");
-	}
-	
-	private VBox createCenter(){
-		BorderPane textPane = new BorderPane();
-		Text text = new Text(Strings.LONG_HOME_TEXT.getValue());
-		text.getStyleClass().add(StyleClassNames.CENTERTEXT.getValue());
-		textPane.setCenter(text);
-		Button bestellButtonCenter = new Button(Strings.BESTELLEN.getValue());
-		BestellHandler bestellHandler = new BestellHandler.Builder().setSceneManager(sceneManager).build();
-		bestellButtonCenter.setOnAction(bestellHandler);
-		bestellButtonCenter.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
-		BorderPane buttonPane = new BorderPane();
-		buttonPane.setRight(bestellButtonCenter);
-		VBox centerBox = new VBox(10,textPane,buttonPane);
-		centerBox.setPrefWidth(sceneManager.getWidth());
-		centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
-		return centerBox;
-	}
-	
-	public static class Builder{
-		private SceneManager sceneManager;
-		public Builder(){}
-		public Builder giveSceneManager(SceneManager sceneManager) {
-			this.sceneManager = sceneManager;
-			return this;
-		}
-		public OrderStepExtraScene build(){
-			return new OrderStepExtraScene(this);
-		}
-		
+
 	}
 
-	@Override
-	public Scene getScene() {
-		return scene;
+	public void update() {
+		root = new VBox(10, navigation, center);
+		scene = new Scene(root, sceneManager.getAppData().getWidth(), sceneManager.getAppData().getHeight());
+		scene.getStylesheets().add("application/application.css");
 	}
-	@Override
-	public Pane getNavigation() {
-		return navigation;
+
+	private Pane createCenter() {
+		try {
+			List<Pizza> pizzaList = sceneManager.getOrderData().getPizzas();
+
+			VBox pizzaBox = new VBox(5);
+			Image image = new Image("images/pizza.png");
+			ImageView imageView = new ImageView();
+			imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
+			imageView.setImage(image);
+			Label pizzaLabel = new Label(Strings.PIZZALABEL.getValue());
+			setHeadLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
+
+			Label descriptionLabel = new Label(Strings.DESCRIPTIONLABEL.getValue());
+			setHeadLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
+
+			Label priceLabel = new Label(Strings.PRICELABEL.getValue());
+			setHeadLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);
+
+			Label anzahlLabel = new Label(Strings.ANZAHLLABEL.getValue());
+			setHeadLabelStyles(sceneManager.getListSize().getColumnFive(), anzahlLabel);
+
+			HBox headRow = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, anzahlLabel);
+			headRow.setAlignment(Pos.CENTER_LEFT);
+			headRow.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
+			pizzaBox.getChildren().add(headRow);
+
+			VBox databox = new VBox(5);
+			int index = 1;
+			for (Pizza pizza : pizzaList) {
+				databox.getChildren().add(buildRow(image, pizza, index));
+				index++;
+			}
+			ScrollPane sp = new ScrollPane(databox);
+
+			pizzaBox.getChildren().add(sp);
+
+			Button forwardButton = new Button(Strings.NOEXTRAS.getValue());
+			forwardButton.setOnAction(event -> sceneManager.setScene(SceneHolder.STEPPERSONALDATA));
+			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
+
+			BorderPane pricePane = new BorderPane();
+			setHeadLabelStyles(sceneManager.getListSize().getColumnFour(), pizzaLabel);
+			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()) + " CHF");
+
+			priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
+			pricePane.setRight(priceCalculateLabel);
+
+			BorderPane buttonPane = new BorderPane();
+			buttonPane.setRight(new HBox(5, forwardButton));
+
+			VBox centerBox = new VBox(10, pizzaBox, pricePane, buttonPane);
+			centerBox.setPrefWidth(sceneManager.getWidth());
+			centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
+			return centerBox;
+		} catch (Exception e) {
+			return new HBox(0, new Text(Strings.ERROR.getValue()));
+		}
 	}
-	
-	@Override
-	public void setNavigation(Pane navigation) {		
-		this.navigation = navigation;
+
+	private Node buildRow(Image image, Pizza pizza, int index) {
+		ImageView imageView = new ImageView();
+		imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
+		imageView.setImage(image);
+
+		Label pizzaLabel = new Label(pizza.getName());
+		setColLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
+
+		Label descriptionLabel = new Label(pizza.getDescription());
+		setColLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
+		String extras = "";
+		VBox extraBox = new VBox(2);
+		
+		double price = pizza.getPrice();
+		int extraIndex = 0;
+		for(Extra extra : pizza.getExtras()){
+			final int eIndex = extraIndex;
+			price += extra.getPrice();
+			Button delete = new Button(Strings.DELETE.getValue());
+			delete.setOnAction( event ->
+				removeExtra(pizza.getExtras(),eIndex)
+			);
+			
+			HBox extraRow = new HBox(3,new Text(extra.getName()),delete);
+			extraBox.getChildren().add(extraRow);
+			extraIndex++;
+		}
+		Label priceLabel = new Label(decimalFormat.format(price));
+		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);
+
+		Text extraText = new Text(extras);
+		
+		
+		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, extraText);
+		row.setAlignment(Pos.CENTER_LEFT);
+		if (index % 2 == 0) {
+			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
+		}
+		return row;
 	}
-	
-	
+
+	private void removeExtra(List<Extra> extras, int index) {
+		extras.remove(index);
+	}
+
 }

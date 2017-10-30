@@ -1,5 +1,7 @@
 package application;
 
+import scenemanagement.SceneHolder;
+
 public class ApplicationData {
 	private double width;
 	private double height;
