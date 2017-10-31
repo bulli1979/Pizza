@@ -1,5 +1,6 @@
 package scenes;
 
+import application.Strings;
 import application.StyleClassNames;
 import elements.NavigationBuilder;
 import javafx.geometry.Insets;
@@ -64,7 +65,7 @@ public class OrderStepPersonalData extends OrderStepScene implements PizzaScene 
 	private TitledPane GetDeliveryDataPane() {
 		TitledPane deliveryDataTitlePane = new TitledPane();
 		GridPane.setConstraints(deliveryDataTitlePane, 1, 0);	
-		deliveryDataTitlePane.setText("Lieferung");
+		deliveryDataTitlePane.setText(Strings.DELIVERY.getValue());
 		deliveryDataTitlePane.setCollapsible(false);
 		
 		GridPane grid = new GridPane();
@@ -72,8 +73,8 @@ public class OrderStepPersonalData extends OrderStepScene implements PizzaScene 
 		grid.setVgap(8);
 		grid.setHgap(8);
 		
-		ComboBox<String> deliveryTimeComboBox = insertComboBox(grid, "Lieferzeit", 0);
-		deliveryTimeComboBox.getItems().addAll("45 min", "1 stunde", "1.5 stunden");
+		ComboBox<String> deliveryTimeComboBox = insertComboBox(grid, Strings.DELIVERYTIME.getValue(), 0);
+		deliveryTimeComboBox.getItems().addAll("45 Minuten", "1 Stunde", "1.5 Stunden");
 				
 		deliveryDataTitlePane.setContent(grid);
 		
@@ -83,7 +84,7 @@ public class OrderStepPersonalData extends OrderStepScene implements PizzaScene 
 	private TitledPane GetPaymentDataPane() {
 		TitledPane paymentDataTitlePane = new TitledPane();
 		GridPane.setConstraints(paymentDataTitlePane, 1, 1);		
-		paymentDataTitlePane.setText("Zahlung");
+		paymentDataTitlePane.setText(Strings.PAYMENT.getValue());
 		paymentDataTitlePane.setCollapsible(false);
 		
 		GridPane grid = new GridPane();
@@ -93,7 +94,7 @@ public class OrderStepPersonalData extends OrderStepScene implements PizzaScene 
 		
 		final ToggleGroup group = new ToggleGroup();
 		
-		insertRadioButton(grid, group, "Bar / mit Karte bei Lieferung", 0, true);
+		insertRadioButton(grid, group, Strings.CASH_PAYMENT_AT_DELIVERY.getValue(), 0, true);
 		//insertRadioButton(grid, group, "VISA", 1);
 		//insertRadioButton(grid, group, "Mastercard", 2);
 		//insertRadioButton(grid, group, "PayPal", 3);
@@ -106,7 +107,7 @@ public class OrderStepPersonalData extends OrderStepScene implements PizzaScene 
 	private TitledPane GetPersonalDataPane() {
 		TitledPane personalDataTitlePane = new TitledPane();
 		GridPane.setConstraints(personalDataTitlePane, 0, 0);		
-		personalDataTitlePane.setText("Persönliche Daten");
+		personalDataTitlePane.setText(Strings.PERSONAL_DATA.getValue());
 		personalDataTitlePane.setCollapsible(false);
 		personalDataTitlePane.setContent(new Button());
 		
@@ -115,18 +116,18 @@ public class OrderStepPersonalData extends OrderStepScene implements PizzaScene 
 		grid.setVgap(8);
 		grid.setHgap(8);
 		
-		ComboBox<String> anredeComboBox = insertComboBox(grid, "Anrede", 0);
-		anredeComboBox.getItems().addAll("Herr", "Frau");
+		ComboBox<String> anredeComboBox = insertComboBox(grid, Strings.SALUTATION.getValue(), 0);
+		anredeComboBox.getItems().addAll(Strings.MR.getValue(), Strings.MRS.getValue());
 		
-		insertTextField(grid, "Name", 1);
-		insertTextField(grid, "Vorname", 2);
-		insertTextField(grid, "Firma", 3);
-		insertTextField(grid, "E-Mail", 4);
-		insertTextField(grid, "Telefon", 5);
-		insertTextField(grid, "Mobile", 6);
-		insertTextField(grid, "Strasse", 7);
-		insertTextField(grid, "PLZ", 8);
-		insertTextField(grid, "Ort", 9);
+		insertTextField(grid, Strings.NAME.getValue(), 1);
+		insertTextField(grid, Strings.FIRST_NAME.getValue(), 2);
+		insertTextField(grid, Strings.COMPANY.getValue(), 3);
+		insertTextField(grid, Strings.E_MAIL.getValue(), 4);
+		insertTextField(grid, Strings.TELEFON.getValue(), 5);
+		insertTextField(grid, Strings.MOBILE_PHONE.getValue(), 6);
+		insertTextField(grid, Strings.ADDRESS.getValue(), 7);
+		insertTextField(grid, Strings.ZIP_CODE.getValue(), 8);
+		insertTextField(grid, Strings.CITY.getValue(), 9);
 		
 		personalDataTitlePane.setContent(grid);
 		

@@ -16,10 +16,28 @@ public enum Strings {
 	HOME("HOME"), 
 	PIZZASELECT("Pizzas wählen"), 
 	EXTRASELECT("Extras hinzufügen"), 
-	PERSONALDATA("Bestellangaben"), 
+	PERSONAL_DATA("Bestellangaben"), 
 	OVERVIEW("Abschluss"), 
 	NOEXTRAS("ohne Extras weiter"), 
-	ERROR("Es ist ein Fehler aufgetreten. Bitte kontaktieren sie den Administrator."), DELETE("löschen");
+	ERROR("Es ist ein Fehler aufgetreten. Bitte kontaktieren sie den Administrator."), 
+	DELETE("löschen"),
+	DELIVERY("Lieferung"),
+	DELIVERYTIME("Lieferzeit"),
+	PAYMENT("Payment"),
+	CASH_PAYMENT_AT_DELIVERY("Bar / mit Karte bei Lieferung"),
+	NAME("Name"),
+	FIRST_NAME("Vorname"),
+	COMPANY("Firma"),
+	E_MAIL("E-Mail"),
+	TELEFON("Telefon"),
+	MOBILE_PHONE("Mobiltelefon"),
+	ADDRESS("Strasse"),
+	ZIP_CODE("PLZ"),
+	CITY("Ort"),
+	SALUTATION("Anrede"),
+	MR("Herr"),
+	MRS("Frau");
+	
 	private final String value;
 	
 	private Strings(final String value){

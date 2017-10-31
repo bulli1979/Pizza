@@ -102,7 +102,7 @@ public class NavigationBuilder {
 			orderExtras.getStyleClass().add(StyleClassNames.INACTIVE.getValue());
 		}
 
-		Button orderPersonalData = new Button(Strings.PERSONALDATA.getValue());
+		Button orderPersonalData = new Button(Strings.PERSONAL_DATA.getValue());
 		if (step >= 3) {
 			orderPersonalData.setOnAction((e) -> {
 				sceneManager.setScene(SceneHolder.HOME);
