@@ -84,9 +84,10 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 			personalDataButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
 			Button forwardButton = new Button(Strings.FORWARD.getValue());
-			forwardButton.setOnAction(event -> 
-				sceneManager.setScene(SceneHolder.STEPEXTRAS)
-			);
+			forwardButton.setOnAction(event -> {
+				SceneHolder.STEPEXTRAS.getPizzaScene().update();
+				sceneManager.setScene(SceneHolder.STEPEXTRAS);
+			});
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
 			BorderPane pricePane = new BorderPane();

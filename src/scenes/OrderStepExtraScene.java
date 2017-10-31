@@ -106,7 +106,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 		ImageView imageView = new ImageView();
 		imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
 		imageView.setImage(image);
-
+		System.out.println(pizza.getName());
 		Label pizzaLabel = new Label(pizza.getName());
 		setColLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
@@ -136,6 +136,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 		if (index % 2 == 0) {
 			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
 		}
+		System.out.println("finish");
 		return row;
 	}
 
