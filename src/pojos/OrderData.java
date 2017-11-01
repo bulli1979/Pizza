@@ -13,7 +13,7 @@ public class OrderData {
 	private String city;
 	private String telephone;
 	private String user;
-	
+	private Pizza selectExtraPizza;
 	public OrderData(){
 		pizzas = new ArrayList<Pizza>();
 	}
@@ -71,4 +71,11 @@ public class OrderData {
 	public void setUser(String user) {
 		this.user = user;
 	}
+	public Pizza getSelectExtraPizza() {
+		return selectExtraPizza;
+	}
+	public void setSelectExtraPizza(Pizza selectExtraPizza) {
+		this.selectExtraPizza = selectExtraPizza;
+	}
+	
 }

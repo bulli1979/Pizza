@@ -71,7 +71,6 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			int index = 1;
 			for (Pizza pizza : pizzaList) {
 				databox.getChildren().add(buildRow(image, pizza, index));
-				System.out.println("add");
 				index++;
 			}
 			ScrollPane sp = new ScrollPane(databox);
@@ -106,7 +105,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 		ImageView imageView = new ImageView();
 		imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
 		imageView.setImage(image);
-		System.out.println(pizza.getName());
+
 		Label pizzaLabel = new Label(pizza.getName());
 		setColLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
@@ -128,6 +127,14 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			extraBox.getChildren().add(extraRow);
 			extraIndex++;
 		}
+		Button addExtra = new Button(Strings.ADD_EXTRA.getValue());
+		addExtra.setOnAction( event -> {
+			sceneManager.getOrderData().setSelectExtraPizza(pizza);
+			SceneHolder.STEPEXTRACHANGE.getPizzaScene().update();
+			sceneManager.setScene(SceneHolder.STEPEXTRACHANGE);
+			
+		});
+		extraBox.getChildren().add(addExtra);
 		Label priceLabel = new Label(decimalFormat.format(price));
 		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);		
 		

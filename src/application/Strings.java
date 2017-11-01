@@ -36,7 +36,8 @@ public enum Strings {
 	CITY("Ort"),
 	SALUTATION("Anrede"),
 	MR("Herr"),
-	MRS("Frau");
+	MRS("Frau"), 
+	ADD_EXTRA("Extras hinzufügen");
 	
 	private final String value;
 	
