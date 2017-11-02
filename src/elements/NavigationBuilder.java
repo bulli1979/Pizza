@@ -75,7 +75,7 @@ public class NavigationBuilder {
 	}
 
 	private static HBox buildOrderView(int step, SceneManager sceneManager) {
-		HBox orderNavigator = new HBox();
+		HBox orderNavigator = new HBox(15);
 		Button homeButton = new Button(Strings.HOME.getValue());
 		homeButton.setOnAction((e) -> {
 			sceneManager.setScene(SceneHolder.HOME);
@@ -83,20 +83,20 @@ public class NavigationBuilder {
 		homeButton.getStyleClass().add(StyleClassNames.ACTIVE.getValue());
 
 		Button orderPizza = new Button(Strings.PIZZASELECT.getValue());
-		if (step > 1) {
-			orderPizza.setOnAction((e) -> {
-				sceneManager.setScene(SceneHolder.STEPPIZZA);
-			});
+		if (step >= 1) {
+			orderPizza.setOnAction(event ->
+				sceneManager.setScene(SceneHolder.STEPPIZZA)
+			);
 			orderPizza.getStyleClass().add(StyleClassNames.ACTIVE.getValue());
 		} else {
 			orderPizza.getStyleClass().add(StyleClassNames.INACTIVE.getValue());
 		}
 
 		Button orderExtras = new Button(Strings.EXTRASELECT.getValue());
-		if (step > 2) {
-			orderExtras.setOnAction((e) -> {
-				sceneManager.setScene(SceneHolder.HOME);
-			});
+		if (step >= 2) {
+			orderExtras.setOnAction(event -> 
+				sceneManager.setScene(SceneHolder.STEPEXTRAS)
+			);
 			orderExtras.getStyleClass().add(StyleClassNames.ACTIVE.getValue());
 		} else {
 			orderExtras.getStyleClass().add(StyleClassNames.INACTIVE.getValue());
@@ -104,12 +104,12 @@ public class NavigationBuilder {
 
 		Button orderPersonalData = new Button(Strings.PERSONAL_DATA.getValue());
 		if (step >= 3) {
-			orderPersonalData.setOnAction((e) -> {
-				sceneManager.setScene(SceneHolder.HOME);
-			});
+			orderPersonalData.setOnAction(event -> 
+				sceneManager.setScene(SceneHolder.STEPPERSONALDATA)
+			);
 			orderPersonalData.getStyleClass().add(StyleClassNames.ACTIVE.getValue());
 		} else {
-			orderPizza.getStyleClass().add(StyleClassNames.INACTIVE.getValue());
+			orderPersonalData.getStyleClass().add(StyleClassNames.INACTIVE.getValue());
 		}
 
 		Button orderOverview = new Button(Strings.OVERVIEW.getValue());

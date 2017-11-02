@@ -77,7 +77,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 
 			pizzaBox.getChildren().add(sp);
 
-			Button forwardButton = new Button(Strings.NOEXTRAS.getValue());
+			Button forwardButton = new Button(Strings.FORWARD.getValue());
 			forwardButton.setOnAction(event -> sceneManager.setScene(SceneHolder.STEPPERSONALDATA));
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
