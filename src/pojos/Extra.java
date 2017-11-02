@@ -1,6 +1,6 @@
 package pojos;
 
-public class Extra {
+public class Extra implements Cloneable {
 	private int id;
 	private double price;
 	private String name;
@@ -29,5 +29,7 @@ public class Extra {
 	public String getDescription(){
 		return description;
 	}
-	
+	public Extra clone() throws CloneNotSupportedException {
+        return (Extra)super.clone();
+    }
 }

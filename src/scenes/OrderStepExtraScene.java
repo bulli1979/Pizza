@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import pojos.Extra;
 import pojos.Pizza;
+import scenemanagement.OrderCalculator;
 import scenemanagement.SceneHolder;
 
 public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
@@ -47,9 +48,8 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			List<Pizza> pizzaList = sceneManager.getOrderData().getPizzas();
 			VBox pizzaBox = new VBox(5);
 			Image image = new Image("images/pizza.png");
-			ImageView imageView = new ImageView();
-			imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
-			imageView.setImage(image);
+			ImageView imageView = createImage(image);
+
 			Label pizzaLabel = new Label(Strings.PIZZALABEL.getValue());
 			setHeadLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
@@ -96,16 +96,12 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
 			return centerBox;
 		} catch (Exception e) {
-			System.out.println("mist");
 			return new HBox(0, new Text(Strings.ERROR.getValue()));
 		}
 	}
 
 	private Node buildRow(Image image, Pizza pizza, int index) {
-		ImageView imageView = new ImageView();
-		imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
-		imageView.setImage(image);
-
+		ImageView imageView = createImage(image);
 		Label pizzaLabel = new Label(pizza.getName());
 		setColLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
@@ -118,10 +114,13 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 		for(Extra extra : pizza.getExtras()){
 			final int eIndex = extraIndex;
 			price += extra.getPrice();
-			Button delete = new Button(Strings.DELETE.getValue());
-			delete.setOnAction( event ->
-				removeExtra(pizza.getExtras(),eIndex)
-			);
+			Button delete = new Button("X");
+			delete.setOnAction( event ->{
+				removeExtra(pizza.getExtras(),eIndex);
+				OrderCalculator.calculatePrice(sceneManager);
+				SceneHolder.STEPEXTRAS.getPizzaScene().update();
+				sceneManager.setScene(SceneHolder.STEPEXTRAS);
+			});
 			
 			HBox extraRow = new HBox(3,new Text(extra.getName()),delete);
 			extraBox.getChildren().add(extraRow);
@@ -143,7 +142,6 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 		if (index % 2 == 0) {
 			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
 		}
-		System.out.println("finish");
 		return row;
 	}
 

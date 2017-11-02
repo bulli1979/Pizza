@@ -37,7 +37,7 @@ public enum Strings {
 	SALUTATION("Anrede"),
 	MR("Herr"),
 	MRS("Frau"), 
-	ADD_EXTRA("Extras hinzufügen");
+	ADD_EXTRA("Extras hinzufügen"), EXTRALABEL("Extra"), FINISH("Extras übernehmen");
 	
 	private final String value;
 	

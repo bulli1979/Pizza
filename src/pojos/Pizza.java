@@ -3,7 +3,7 @@ package pojos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pizza implements Cloneable{
+public class Pizza{
 	private double price;
 	private String name;
 	private String description;
@@ -44,8 +44,14 @@ public class Pizza implements Cloneable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Pizza clone() throws CloneNotSupportedException {
-        return (Pizza)super.clone();
+	public Pizza clonePizza(){
+        Pizza pizza = new Pizza();
+        pizza.setDescription(this.description);
+        pizza.setName(this.name);
+        pizza.setPrice(this.price);
+        pizza.setExtras(new ArrayList<Extra>());
+        pizza.setId(this.id);
+        return pizza;
     }
 	
 }

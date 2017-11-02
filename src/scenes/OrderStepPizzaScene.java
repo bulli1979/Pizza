@@ -47,9 +47,8 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 
 			VBox pizzaBox = new VBox(5);
 			Image image = new Image("images/pizza.png");
-			ImageView imageView = new ImageView();
-			imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
-			imageView.setImage(image);
+			ImageView imageView = createImage(image);
+
 			Label pizzaLabel = new Label(Strings.PIZZALABEL.getValue());
 			setHeadLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
@@ -92,6 +91,7 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 
 			BorderPane pricePane = new BorderPane();
 			setHeadLabelStyles(sceneManager.getListSize().getColumnFour(), pizzaLabel);
+			
 			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()) + " CHF");
 
 			priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
@@ -111,10 +111,7 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 
 	private HBox buildRow(Image image, Pizza pizza, int index) {
 
-		ImageView imageView = new ImageView();
-		imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
-		imageView.setImage(image);
-
+		ImageView imageView = createImage(image);
 		Label pizzaLabel = new Label(pizza.getName());
 		setColLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 

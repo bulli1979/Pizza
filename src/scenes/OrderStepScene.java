@@ -6,6 +6,8 @@ import application.StyleClassNames;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import scenemanagement.SceneManager;
 
@@ -49,6 +51,18 @@ public abstract class OrderStepScene {
 
 	public void setNavigation(Pane navigation) {
 		this.navigation = navigation;
+	}
+	
+	protected ImageView createImage(Image image) {
+		ImageView imageView = new ImageView();
+		imageView.setFitWidth(sceneManager.getListSize().getColumnOne());
+		imageView.setImage(image);
+		imageView.setFitHeight(calculateImageHeight(sceneManager.getListSize().getColumnOne(), image.getWidth(), image.getHeight()));
+		return imageView;
+	}
+	
+	private double calculateImageHeight(double objWidth,double imageWidth,double imageHeight){
+		return imageHeight / (imageWidth / objWidth); 
 	}
 	
 }
