@@ -8,11 +8,16 @@ import scenemanagement.SceneManager;
 
 public class Main extends Application {
 
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 	private SceneManager sceneManager;
-	
+
+
 	@Override
 	public void start(Stage primaryStage) {
-		
+
 		this.sceneManager = new SceneManager(this, primaryStage, new OrderData());
 		sceneManager.initScenes();
 		try {
@@ -20,10 +25,5 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-
-	public static void main(String[] args) {
-		launch(args);
 	}
 }

@@ -37,16 +37,16 @@ public enum Strings {
 	SALUTATION("Anrede"),
 	MR("Herr"),
 	MRS("Frau"), 
-	ADD_EXTRA("Extras hinzufügen"), EXTRALABEL("Extra"), FINISH("Extras übernehmen");
-	
+	ADD_EXTRA("Extras hinzufügen"), EXTRALABEL("Extra"), FINISH("Extras übernehmen"), THANK_YOU("Vielen Dank für Ihre Bestellung!");
+
 	private final String value;
-	
+
 	private Strings(final String value){
 		this.value = value;
 	}
-	
+
 	public String getValue(){
 		return value;
 	}
-	
+
 }
