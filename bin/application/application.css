@@ -41,11 +41,10 @@
 }
 .listColStyle{
 	-fx-text-alignment: left;
-	 -fx-border-color:#333333;
-	  -fx-border-width:2pt;
 }
 .listHeadStyle{
 	-fx-text-alignment: left;
-	 -fx-border-color:#333333;
-	  -fx-border-width:2pt;
+}
+.validationError{
+	-fx-background-color:#ffc3b5
 }

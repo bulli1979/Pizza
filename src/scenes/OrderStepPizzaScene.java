@@ -94,15 +94,11 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
 			
-			BorderPane pricePane = new BorderPane();
-			pricePane.setPrefWidth(sceneManager.getListSize().getColumnFour());
-			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()));
-			priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
-			pricePane.setRight(priceCalculateLabel);
+			BorderPane pricePane = createTotal();
 
 			BorderPane buttonPane = new BorderPane();
 			buttonPane.setRight(new HBox(5, personalDataButton, forwardButton));
-
+			
 			VBox centerBox = new VBox(10, pizzaBox, pricePane, buttonPane);
 			centerBox.setPrefWidth(sceneManager.getWidth());
 			centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
@@ -112,15 +108,21 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 		}
 	}
 
+
+	
+
 	private HBox buildRow(Image image, Pizza pizza, int index) {
 
 		ImageView imageView = createImage(image);
 		Label pizzaLabel = new Label(pizza.getName());
 		setColLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
-		Label descriptionLabel = new Label(pizza.getDescription());
-		setColLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
-		descriptionLabel.setAlignment(Pos.TOP_LEFT);
+		Text descriptionLabel = new Text(pizza.getDescription());
+		descriptionLabel.maxWidth(sceneManager.getListSize().getColumnThree());
+		descriptionLabel.setWrappingWidth(sceneManager.getListSize().getColumnThree());
+		HBox descBox = new HBox(descriptionLabel);
+		descBox.setPrefWidth(sceneManager.getListSize().getColumnThree());
+
 		
 		Label priceLabel = new Label(decimalFormat.format(pizza.getPrice()));
 		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);
@@ -131,7 +133,7 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 		VBox arrows = createArrows(pizza, anzahlField);
 		anzahlBox.getChildren().addAll(anzahlField,arrows);
 		anzahlBox.setAlignment(Pos.CENTER_LEFT);
-		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, anzahlBox);
+		HBox row = new HBox(20, imageView, pizzaLabel, descBox, priceLabel, anzahlBox);
 		row.setAlignment(Pos.CENTER_LEFT);
 		if (index % 2 == 0) {
 			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
@@ -139,6 +141,7 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 		return row;
 	}
 
+	
 	private TextField createAnzahlField(Pizza pizza) {
 		TextField anzahlField = new TextField();
 		anzahlField.setText(String.valueOf(OrderCalculator.getCountForPizza(sceneManager, pizza)));

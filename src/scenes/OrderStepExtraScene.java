@@ -53,6 +53,8 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			Label pizzaLabel = new Label(Strings.PIZZALABEL.getValue());
 			setHeadLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
+			
+			
 			Label descriptionLabel = new Label(Strings.DESCRIPTIONLABEL.getValue());
 			setHeadLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
 
@@ -81,12 +83,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			forwardButton.setOnAction(event -> sceneManager.setScene(SceneHolder.STEPPERSONALDATA));
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
-			BorderPane pricePane = new BorderPane();
-			pricePane.setPrefWidth(sceneManager.getListSize().getColumnFour());
-			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()) + " CHF");
-
-			priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
-			pricePane.setRight(priceCalculateLabel);
+			BorderPane pricePane = createTotal();
 
 			BorderPane buttonPane = new BorderPane();
 			buttonPane.setRight(new HBox(5, forwardButton));
@@ -105,8 +102,14 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 		Label pizzaLabel = new Label(pizza.getName());
 		setColLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
 
-		Label descriptionLabel = new Label(pizza.getDescription());
-		setColLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
+		Text descriptionLabel = new Text(pizza.getDescription());
+		descriptionLabel.maxWidth(sceneManager.getListSize().getColumnThree());
+		descriptionLabel.setWrappingWidth(sceneManager.getListSize().getColumnThree());
+		HBox descBox = new HBox(descriptionLabel);
+		descBox.setPrefWidth(sceneManager.getListSize().getColumnThree());
+
+		
+		
 		VBox extraBox = new VBox(2);
 		
 		double price = pizza.getPrice();
@@ -138,7 +141,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 		Label priceLabel = new Label(decimalFormat.format(price));
 		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);		
 		
-		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, extraBox);
+		HBox row = new HBox(20, imageView, pizzaLabel, descBox, priceLabel, extraBox);
 		row.setAlignment(Pos.CENTER_LEFT);
 		if (index % 2 == 0) {
 			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());

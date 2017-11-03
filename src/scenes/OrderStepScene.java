@@ -2,12 +2,15 @@ package scenes;
 
 import java.text.DecimalFormat;
 
+import application.Strings;
 import application.StyleClassNames;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import scenemanagement.SceneManager;
 
 public abstract class OrderStepScene {
@@ -19,13 +22,16 @@ public abstract class OrderStepScene {
 	protected Pane center;
 	protected Label priceCalculateLabel;
 	protected String pattern = "###,##0.00 CHF";
+	protected String patternTotal = "Total: ###,##0.00 CHF";
 	protected DecimalFormat decimalFormat = new DecimalFormat(pattern);
-	
+	protected DecimalFormat decimalFormatTotal = new DecimalFormat(patternTotal);
+
 	protected void setColLabelStyles(double width, Label label) {
 		label.setPrefWidth(width);
 		label.setMinWidth(width);
 		label.getStyleClass().add(StyleClassNames.LISTCOLSTYLE.getValue());
 	}
+	
 	
 	protected void setHeadLabelStyles(double width, Label label) {
 		label.setPrefWidth(width);
@@ -65,6 +71,14 @@ public abstract class OrderStepScene {
 		return imageHeight / (imageWidth / objWidth); 
 	}
 
-
+	protected BorderPane createTotal() {
+		BorderPane pricePane = new BorderPane();
+		pricePane.setPrefWidth(sceneManager.getListSize().getColumnFour());
+		priceCalculateLabel = new Label(decimalFormatTotal.format(sceneManager.getOrderData().getPrice()));
+		priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
+		priceCalculateLabel.setFont(Font.font (Strings.VERDANA.getValue(), 32));
+		pricePane.setRight(priceCalculateLabel);
+		return pricePane;
+	}
 	
 }

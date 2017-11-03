@@ -22,7 +22,7 @@ public enum Strings {
 	ERROR("Es ist ein Fehler aufgetreten. Bitte kontaktieren sie den Administrator."), 
 	DELETE("löschen"),
 	DELIVERY("Lieferung"),
-	DELIVERYTIME("Lieferzeit"),
+	DELIVERYTIME("Lieferzeit in Minuten"),
 	PAYMENT("Payment"),
 	CASH_PAYMENT_AT_DELIVERY("Bar / mit Karte bei Lieferung"),
 	NAME("Name"),
@@ -37,7 +37,8 @@ public enum Strings {
 	SALUTATION("Anrede"),
 	MR("Herr"),
 	MRS("Frau"), 
-	ADD_EXTRA("Extras hinzufügen"), EXTRALABEL("Extra"), FINISH("Extras übernehmen"), THANK_YOU("Vielen Dank für Ihre Bestellung!");
+	ADD_EXTRA("Extras hinzufügen"), EXTRALABEL("Extra"), FINISH("Extras übernehmen"), THANK_YOU("Vielen Dank für Ihre Bestellung!"), VERDANA("verdana"), NOPIZZA("Keine Pizza ausgewählt."), TOTAL("Total:"), 
+	TIMELABEL("Ihre vorrausichtliche Lieferzeit: "), LINEBREAK("\r\n");
 
 	private final String value;
 

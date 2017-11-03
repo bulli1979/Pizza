@@ -14,6 +14,7 @@ public class OrderData {
 	private String telephone;
 	private String user;
 	private Pizza selectExtraPizza;
+	private String deliveryTime;
 	public OrderData(){
 		pizzas = new ArrayList<Pizza>();
 	}
@@ -77,5 +78,10 @@ public class OrderData {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-
+	public String getDeliveryTime() {
+		return deliveryTime;
+	}
+	public void setDeliveryTime(String deliveryTime) {
+		this.deliveryTime = deliveryTime;
+	}
 }

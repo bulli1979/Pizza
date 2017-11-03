@@ -12,7 +12,8 @@ public enum StyleClassNames {
 	LISTCOLSTYLE("listColStyle"), 
 	LISTEVEN("even"), 
 	ACTIVE("activeButton"),
-	INACTIVE("inactiveButton");
+	INACTIVE("inactiveButton"), 
+	VALIDATIONERROR("validationError");
 	private final String value;
 	
 	private StyleClassNames(final String value){
