@@ -66,6 +66,7 @@ public class OrderCalculator {
 
 	
 	public static void calculatePrice(SceneManager sceneManager){
+		
 		double price = 0;
 		for(Pizza pizza : sceneManager.getOrderData().getPizzas()){
 			price += pizza.getPrice();

@@ -1,6 +1,7 @@
 package scenes;
 
 import java.util.List;
+
 import application.Strings;
 import application.StyleClassNames;
 import data.DAOStaticData;
@@ -25,7 +26,7 @@ import scenemanagement.OrderCalculator;
 import scenemanagement.SceneHolder;
 
 public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
-
+	private List<Pizza> pizzaList;
 	public void initialize() {
 
 		navigation = NavigationBuilder.buildNavigation(SceneHolder.STEPPIZZA, sceneManager);
@@ -45,10 +46,10 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 
 	private Pane createCenter() {
 		try {
-			List<Pizza> pizzaList = DAOStaticData.getAll();
-			
+			if(pizzaList == null){
+				pizzaList = DAOStaticData.getAll();
+			}
 			VBox pizzaBox = new VBox(0);
-			pizzaBox.setPrefWidth(sceneManager.getWidth());
 			
 			Image image = new Image("images/pizza.png");
 			ImageView imageView = createImage(image);
@@ -77,7 +78,6 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 				index++;
 			}
 			ScrollPane sp = new ScrollPane(databox);
-
 			pizzaBox.getChildren().add(sp);
 
 			Button personalDataButton = new Button(Strings.NOEXTRAS.getValue());
@@ -93,10 +93,10 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 			});
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
+			
 			BorderPane pricePane = new BorderPane();
 			pricePane.setPrefWidth(sceneManager.getListSize().getColumnFour());
-			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()) + " CHF");
-
+			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()));
 			priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
 			pricePane.setRight(priceCalculateLabel);
 
@@ -108,7 +108,6 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 			centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
 			return centerBox;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return new HBox(0, new Text(Strings.ERROR.getValue()));
 		}
 	}
@@ -128,7 +127,19 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 
 		HBox anzahlBox = new HBox(5);
 		anzahlBox.setPrefWidth(sceneManager.getListSize().getColumnFive());
+		TextField anzahlField = createAnzahlField(pizza);
+		VBox arrows = createArrows(pizza, anzahlField);
+		anzahlBox.getChildren().addAll(anzahlField,arrows);
+		anzahlBox.setAlignment(Pos.CENTER_LEFT);
+		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, anzahlBox);
+		row.setAlignment(Pos.CENTER_LEFT);
+		if (index % 2 == 0) {
+			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
+		}
+		return row;
+	}
 
+	private TextField createAnzahlField(Pizza pizza) {
 		TextField anzahlField = new TextField();
 		anzahlField.setText(String.valueOf(OrderCalculator.getCountForPizza(sceneManager, pizza)));
 		anzahlField.setId(String.valueOf(pizza.getId()));
@@ -150,18 +161,42 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 				priceCalculateLabel.setText(decimalFormat.format(sceneManager.getOrderData().getPrice()));
 			}
 		});
-		
-		VBox arrows = createArrows(pizza, anzahlField);
-		anzahlBox.getChildren().addAll(anzahlField,arrows);
-		anzahlBox.setAlignment(Pos.CENTER_LEFT);
-		
-		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, anzahlBox);
-		row.setAlignment(Pos.CENTER_LEFT);
-		if (index % 2 == 0) {
-			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
-		}
-		return row;
+		return anzahlField;
 	}
 
+	private VBox createArrows(Pizza pizza, TextField anzahlField) {
+		VBox arrows = new VBox(5);
+		arrows.setPadding(new Insets(20, 0, 0, 0));
+		Image arrowUp = new Image("images/arrowUp.png");
+		ImageView up = new ImageView(arrowUp);
+		HBox upHolder = new HBox(up);
+		up.setFitWidth(arrowUp.getWidth()/4);
+		up.setFitHeight(arrowUp.getHeight()/4);
+
+		upHolder.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+			int anzahl = Integer.parseInt(anzahlField.getText());
+			anzahl++;
+			anzahlField.setText(String.valueOf(anzahl));
+			OrderCalculator.calculate(sceneManager, pizza, anzahl);
+		});
+		
+		Image arrowDown = new Image("images/arrowDown.png");
+		ImageView down = new ImageView(arrowDown);
+		HBox downHolder = new HBox(down);
+
+		down.setFitWidth(arrowDown.getWidth()/4);
+		down.setFitHeight(arrowDown.getHeight()/4);
+
+		downHolder.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+			int anzahl = Integer.parseInt(anzahlField.getText());
+			if(anzahl >0){
+				anzahl--;
+				anzahlField.setText(String.valueOf(anzahl));
+				OrderCalculator.calculate(sceneManager, pizza, anzahl);
+			}
+		});
+		arrows.getChildren().addAll(upHolder,downHolder);
+		return arrows;
+	}
 	
 }

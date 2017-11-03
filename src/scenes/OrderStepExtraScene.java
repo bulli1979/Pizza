@@ -82,7 +82,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
 			BorderPane pricePane = new BorderPane();
-			setHeadLabelStyles(sceneManager.getListSize().getColumnFour(), pizzaLabel);
+			pricePane.setPrefWidth(sceneManager.getListSize().getColumnFour());
 			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()) + " CHF");
 
 			priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
@@ -134,6 +134,7 @@ public class OrderStepExtraScene extends OrderStepScene implements PizzaScene {
 			
 		});
 		extraBox.getChildren().add(addExtra);
+		extraBox.setPrefWidth(sceneManager.getListSize().getColumnFive());
 		Label priceLabel = new Label(decimalFormat.format(price));
 		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);		
 		

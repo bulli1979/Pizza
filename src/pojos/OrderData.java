@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OrderData {
 	private List<Pizza> pizzas;
-	private double price;
+	private double price = 0;
 	private String firstName;
 	private String name;
 	private String street;
