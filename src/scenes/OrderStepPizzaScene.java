@@ -5,6 +5,7 @@ import application.Strings;
 import application.StyleClassNames;
 import data.DAOStaticData;
 import elements.NavigationBuilder;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -44,14 +46,16 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 	private Pane createCenter() {
 		try {
 			List<Pizza> pizzaList = DAOStaticData.getAll();
-
-			VBox pizzaBox = new VBox(5);
+			
+			VBox pizzaBox = new VBox(0);
+			pizzaBox.setPrefWidth(sceneManager.getWidth());
+			
 			Image image = new Image("images/pizza.png");
 			ImageView imageView = createImage(image);
-
+			
 			Label pizzaLabel = new Label(Strings.PIZZALABEL.getValue());
 			setHeadLabelStyles(sceneManager.getListSize().getColumnTwo(), pizzaLabel);
-
+			
 			Label descriptionLabel = new Label(Strings.DESCRIPTIONLABEL.getValue());
 			setHeadLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
 
@@ -90,8 +94,7 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 			forwardButton.getStyleClass().add(StyleClassNames.BESTELLBUTTON_CENTER.getValue());
 
 			BorderPane pricePane = new BorderPane();
-			setHeadLabelStyles(sceneManager.getListSize().getColumnFour(), pizzaLabel);
-			
+			pricePane.setPrefWidth(sceneManager.getListSize().getColumnFour());
 			priceCalculateLabel = new Label(decimalFormat.format(sceneManager.getOrderData().getPrice()) + " CHF");
 
 			priceCalculateLabel.setPrefWidth(sceneManager.getListSize().getColumnFive());
@@ -105,6 +108,7 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 			centerBox.getStyleClass().add(StyleClassNames.CENTERBOX.getValue());
 			return centerBox;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new HBox(0, new Text(Strings.ERROR.getValue()));
 		}
 	}
@@ -117,12 +121,15 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 
 		Label descriptionLabel = new Label(pizza.getDescription());
 		setColLabelStyles(sceneManager.getListSize().getColumnThree(), descriptionLabel);
-
+		descriptionLabel.setAlignment(Pos.TOP_LEFT);
+		
 		Label priceLabel = new Label(decimalFormat.format(pizza.getPrice()));
 		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);
 
+		HBox anzahlBox = new HBox(5);
+		anzahlBox.setPrefWidth(sceneManager.getListSize().getColumnFive());
+
 		TextField anzahlField = new TextField();
-		anzahlField.setPrefWidth(sceneManager.getListSize().getColumnFive());
 		anzahlField.setText(String.valueOf(OrderCalculator.getCountForPizza(sceneManager, pizza)));
 		anzahlField.setId(String.valueOf(pizza.getId()));
 		anzahlField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -143,12 +150,18 @@ public class OrderStepPizzaScene extends OrderStepScene implements PizzaScene {
 				priceCalculateLabel.setText(decimalFormat.format(sceneManager.getOrderData().getPrice()));
 			}
 		});
-
-		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, anzahlField);
+		
+		VBox arrows = createArrows(pizza, anzahlField);
+		anzahlBox.getChildren().addAll(anzahlField,arrows);
+		anzahlBox.setAlignment(Pos.CENTER_LEFT);
+		
+		HBox row = new HBox(20, imageView, pizzaLabel, descriptionLabel, priceLabel, anzahlBox);
 		row.setAlignment(Pos.CENTER_LEFT);
 		if (index % 2 == 0) {
 			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
 		}
 		return row;
 	}
+
+	
 }

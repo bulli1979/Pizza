@@ -1,9 +1,4 @@
 /application/
-/data/
-/dbtests/
-/elements/
-/events/
-/pojos/
-/scenemanagement/
 /scenes/
+/scenemanagement/
 /images/

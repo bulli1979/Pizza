@@ -16,7 +16,7 @@
 	-fx-padding:20;
 }
 .centerText{
-	-fx-text-alignment:center;
+	-fx-text-alignment:left;
 }
 .bestellbuttonCenter{
 	-fx-padding:10;	
@@ -38,4 +38,14 @@
 .inactiveButton{
 	-fx-background-color:#cccccc;
 	-fx-color:#666666;
+}
+.listColStyle{
+	-fx-text-alignment: left;
+	 -fx-border-color:#333333;
+	  -fx-border-width:2pt;
+}
+.listHeadStyle{
+	-fx-text-alignment: left;
+	 -fx-border-color:#333333;
+	  -fx-border-width:2pt;
 }

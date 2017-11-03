@@ -9,10 +9,10 @@ public class ScreenSizeCalculator {
 		double realsize = width-170;
 		double onePart = realsize/10;
 		screenSize.setColumnOne(onePart);
-		screenSize.setColumnTwo(onePart*3);
-		screenSize.setColumnThree(onePart*4);
+		screenSize.setColumnTwo(onePart);
+		screenSize.setColumnThree(onePart*5);
 		screenSize.setColumnFour(onePart);
-		screenSize.setColumnFive(onePart);
+		screenSize.setColumnFive(onePart*2);
 		return screenSize;
 	}
 }
