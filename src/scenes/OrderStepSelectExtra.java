@@ -127,43 +127,43 @@ public class OrderStepSelectExtra extends OrderStepScene implements PizzaScene{
 		Label priceLabel = new Label(decimalFormat.format(extra.getPrice()));
 		setColLabelStyles(sceneManager.getListSize().getColumnFour(), priceLabel);
 
-		HBox anzahlBox = new HBox(5);
-		anzahlBox.setPrefWidth(sceneManager.getListSize().getColumnFive());
-		TextField anzahlField = createAnzahlField(extra);
-		VBox arrows = createArrows(extra, anzahlField);
-		anzahlBox.getChildren().addAll(anzahlField,arrows);
-		anzahlBox.setAlignment(Pos.CENTER_LEFT);
+		HBox amountBox = new HBox(5);
+		amountBox.setPrefWidth(sceneManager.getListSize().getColumnFive());
+		TextField amountField = createAmountField(extra);
+		VBox arrows = createArrows(extra, amountField);
+		amountBox.getChildren().addAll(amountField,arrows);
+		amountBox.setAlignment(Pos.CENTER_LEFT);
 		
-		HBox row = new HBox(20, imageView, pizzaLabel, descBox, priceLabel, anzahlBox);
+		HBox row = new HBox(20, imageView, pizzaLabel, descBox, priceLabel, amountBox);
 		row.setAlignment(Pos.CENTER_LEFT);
 		if (index % 2 == 0) {
 			row.getStyleClass().add(StyleClassNames.LISTEVEN.getValue());
 		}
 		return row;
 	}
-	private TextField createAnzahlField(Extra extra) {
-		TextField anzahlField = new TextField();
-		anzahlField.setText(String.valueOf(OrderCalculator.getCountForExtra(sceneManager, extra)));
-		anzahlField.setId(String.valueOf(extra.getId()));
-		anzahlField.textProperty().addListener((observable, oldValue, newValue) -> {
+	private TextField createAmountField(Extra extra) {
+		TextField amountField = new TextField();
+		amountField.setText(String.valueOf(OrderCalculator.getCountForExtra(sceneManager, extra)));
+		amountField.setId(String.valueOf(extra.getId()));
+		amountField.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (newValue != null) {
 				try {
 					int val = Integer.parseInt(newValue);
 					OrderCalculator.calculateExtra(sceneManager, extra, val);
 					priceCalculateLabel.setText(decimalFormat.format(sceneManager.getOrderData().getPrice()));
 				} catch (Exception e) {
-					anzahlField.setText("");
+					amountField.setText("");
 				}
 			}
 		});
-		anzahlField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue && anzahlField.getText().equals("")) {
-				anzahlField.setText("0");
+		amountField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue && amountField.getText().equals("")) {
+				amountField.setText("0");
 				OrderCalculator.calculateExtra(sceneManager, extra, 0);
 				priceCalculateLabel.setText(decimalFormat.format(sceneManager.getOrderData().getPrice()));
 			}
 		});
-		return anzahlField;
+		return amountField;
 	}
 	
 	private VBox createArrows(Extra extra, TextField anzahlField) {
